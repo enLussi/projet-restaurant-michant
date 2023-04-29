@@ -24,7 +24,7 @@ class RegistrationFormType extends AbstractType
             ->add('lastname')
             ->add('firstname')
             ->add('phone')
-            ->add('allergen', EntityType::class, [
+            ->add('allergens', EntityType::class, [
                 'class' => Allergen::class,
                 'choice_label' => 'label',
                 'label' => 'Allergènes',
