@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -15,6 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
     'admin' => Admin::class,
     'customer' => Customer::class
 ])]
+#[UniqueEntity(fields: ['email'], message: 'Un compte existe déjà avec cette adresse E-mail')]
 abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
