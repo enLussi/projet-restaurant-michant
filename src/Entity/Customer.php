@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
@@ -19,6 +20,9 @@ class Customer extends User
 
     #[ORM\ManyToMany(targetEntity: Allergen::class, inversedBy: 'customers')]
     private Collection $allergens;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $default_covers = null;
 
     public function __construct()
     {
@@ -88,6 +92,18 @@ class Customer extends User
     public function removeAllergen(Allergen $allergen): self
     {
         $this->allergens->removeElement($allergen);
+
+        return $this;
+    }
+
+    public function getDefaultCovers(): ?int
+    {
+        return $this->default_covers;
+    }
+
+    public function setDefaultCovers(int $default_covers): self
+    {
+        $this->default_covers = $default_covers;
 
         return $this;
     }
