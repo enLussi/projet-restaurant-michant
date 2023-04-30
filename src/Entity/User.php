@@ -42,6 +42,9 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     protected ?string $firstname = null;
 
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    protected $resetToken;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -132,6 +135,18 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
 
         return $this;
     }
