@@ -13,8 +13,6 @@ setmenuField.onchange = () => {
   // On crée une url avec la valeur 
   const url = `/api/fetch/courses?setmenu=${setmenuId}`;
 
-  console.log(url);
-
   // On fait un requête en Get pour obtenir les plats
   // correspondant à la Formule
   fetch(url)
@@ -22,10 +20,9 @@ setmenuField.onchange = () => {
     .then(coursesCategories => {
       // On mets à jour les options du champ de 
       // sélection des plats
-
       courseSelect.innerHTML = "";
 
-      coursesCategories.forEach(category => {
+      Object.entries(coursesCategories).forEach(category => {
 
         let count = 0;
 
@@ -36,9 +33,13 @@ setmenuField.onchange = () => {
         coursesField.setAttribute('multiple', true);
         coursesField.setAttribute('required', true);
         coursesField.id = 'menu_form_courses'+count;
+
+        // console.log(category);
   
-        category.forEach(course => {
+        category[1].forEach(course => {
           const option = document.createElement('option');
+
+          console.log(course);
           option.value = course.id;
           option.textContent = course.title;
           coursesField.appendChild(option);

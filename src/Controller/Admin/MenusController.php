@@ -38,10 +38,7 @@ class MenusController extends AbstractController
 
         $menu_form->handleRequest($request);
 
-        
-
         if($menu_form->isSubmitted() && $menu_form->isValid()) {
-            dd($menu_form);
             $count = 0;
 
             // On boucle sur tous les select des catégories de plat

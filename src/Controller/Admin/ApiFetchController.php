@@ -37,13 +37,21 @@ class ApiFetchController extends AbstractController
         foreach ($courseCategories as $category) {
             $courses = $courseRepository->findBy(['category' => $category->getId()]);
 
-            array_push($all_courses, $courses);
+            $courses_toexport = [];
+            foreach ($courses as $course) {
+                $course_toexport = [
+                    'id' => $course->getId(),
+                    'title' => $course->getTitle()
+                ];
+
+                array_push($courses_toexport, $course_toexport);
+            }
+
+            array_push($all_courses, $courses_toexport);
         }
         
-
-        $response = new JsonResponse();
-        $response->setData($all_courses);
-        
+        // On renvoie la réponse sous un format JSON
+        $response = new JsonResponse($all_courses);
         return $response;
     }
 }
