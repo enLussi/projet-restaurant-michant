@@ -41,6 +41,10 @@ class MenusController extends AbstractController
             $entityManager->persist($menu);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Menu ajouté avec succès');
+
+            return $this->redirectToRoute('app_menus_index');
+
         }
 
         return $this->render('admin/menus/add.html.twig', [
@@ -66,6 +70,10 @@ class MenusController extends AbstractController
 
             $entityManager->persist($menu);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Menu ajouté avec succès');
+
+            return $this->redirectToRoute('app_menus_index');
 
         }
 
