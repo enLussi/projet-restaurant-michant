@@ -1,6 +1,5 @@
 const setmenuField = document.getElementById('menu_form_setmenu');
 const courseSelect = document.getElementById('courseSelect');
-// const coursesField = document.getElementById('menu_form_courses');
 
 
 setmenuField.onchange = () => {
@@ -20,28 +19,40 @@ setmenuField.onchange = () => {
     .then(coursesCategories => {
       // On mets à jour les options du champ de 
       // sélection des plats
+
+      // On vide la div qui va accueillir les
+      // nouveaux select 
       courseSelect.innerHTML = "";
 
+      // On boucle sur les données envoyé par le serveur,
+      // Object.entries permet de boucler comme sur un tableau
+      // mais pour des objets
       Object.entries(coursesCategories).forEach(category => {
 
         let count = 0;
 
+        // Une div pour accueillir chaque select
+        // et création d'un select avec les attributs
+        // multiple, required et un id unique
         const container = document.createElement('div');
-
         const coursesField = document.createElement('select');
 
         coursesField.setAttribute('multiple', true);
         coursesField.setAttribute('required', true);
         coursesField.id = 'menu_form_courses'+count;
 
-        // console.log(category);
-  
+        // On boucle sur l'élément d'indice 1 qui correspond à 
+        // l'objet Plat.
         category[1].forEach(course => {
+
+          // On crée l'option du select pour chaque Plat
+          // dans la Catégorie
           const option = document.createElement('option');
 
-          console.log(course);
           option.value = course.id;
           option.textContent = course.title;
+
+          // On ajoute les éléments dans les divs respectives
           coursesField.appendChild(option);
         });
 
