@@ -75,7 +75,7 @@ class SetMenusController extends AbstractController
             return $this->redirectToRoute('app_setmenus_index');
 
         }
-        return $this->render('setmenus/index.html.twig', [
+        return $this->render('admin/setmenus/index.html.twig', [
             'setmenuForm' => $setmenu_form->createView(),
         ]);
     }
@@ -83,7 +83,7 @@ class SetMenusController extends AbstractController
     #[Route('/suppression/{id}', name: 'delete')]
     public function delete(): Response
     {
-        return $this->render('setmenus/index.html.twig', [
+        return $this->render('admin/setmenus/index.html.twig', [
             'controller_name' => 'SetMenusController',
         ]);
     }
