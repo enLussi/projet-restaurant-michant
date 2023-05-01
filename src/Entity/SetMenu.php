@@ -25,9 +25,13 @@ class SetMenu
     #[ORM\ManyToMany(targetEntity: CourseCategory::class, inversedBy: 'setMenus')]
     private Collection $courseCategory;
 
+    #[ORM\OneToMany(mappedBy: 'setMenu', targetEntity: Menu::class)]
+    private Collection $menus;
+
     public function __construct()
     {
         $this->courseCategory = new ArrayCollection();
+        $this->menus = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -55,6 +59,36 @@ class SetMenu
     public function removeCourseCategory(CourseCategory $courseCategory): self
     {
         $this->courseCategory->removeElement($courseCategory);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Menu>
+     */
+    public function getMenus(): Collection
+    {
+        return $this->menus;
+    }
+
+    public function addMenu(Menu $menu): self
+    {
+        if (!$this->menus->contains($menu)) {
+            $this->menus->add($menu);
+            $menu->setSetMenu($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMenu(Menu $menu): self
+    {
+        if ($this->menus->removeElement($menu)) {
+            // set the owning side to null (unless already changed)
+            if ($menu->getSetMenu() === $this) {
+                $menu->setSetMenu(null);
+            }
+        }
 
         return $this;
     }

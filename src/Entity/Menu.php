@@ -22,6 +22,10 @@ class Menu
     #[ORM\ManyToMany(targetEntity: Course::class, inversedBy: 'menus')]
     private Collection $courses;
 
+    #[ORM\ManyToOne(inversedBy: 'menus')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?SetMenu $setMenu = null;
+
     public function __construct()
     {
         $this->courses = new ArrayCollection();
@@ -54,6 +58,18 @@ class Menu
     public function removeCourse(Course $course): self
     {
         $this->courses->removeElement($course);
+
+        return $this;
+    }
+
+    public function getSetMenu(): ?SetMenu
+    {
+        return $this->setMenu;
+    }
+
+    public function setSetMenu(?SetMenu $setMenu): self
+    {
+        $this->setMenu = $setMenu;
 
         return $this;
     }
