@@ -1,0 +1,8 @@
+{{ form_start(courseForm) }}
+  {{ form_row(courseForm.title) }}
+  {{ form_row(courseForm.summary) }}
+  {{ form_row(courseForm.price) }}
+  {{ form_row(courseForm.category) }}
+
+  <button type="submit">{{ label | default('Ajouter') }} le plat</button>
+{{ form_end(courseForm) }}
