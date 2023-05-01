@@ -30,18 +30,18 @@ class MenuFormType extends AbstractType
                         ->orderBy('s.title', 'ASC');
                 }
             ])
-            ->add('courses', EntityType::class, [
-                'class' => Course::class,
-                'choice_label' => 'title',
-                'label' => 'Plats',
-                'multiple' => true,
-                'expanded' => false,
-                'query_builder' => function(CourseRepository $cr) {
-                    return $cr->createQueryBuilder('c')
-                        ->orderBy('c.title', 'ASC');
-                },
-                'choices' => [],
-            ])
+            // ->add('courses', EntityType::class, [
+            //     'class' => Course::class,
+            //     'choice_label' => 'title',
+            //     'label' => 'Plats',
+            //     'multiple' => true,
+            //     'expanded' => false,
+            //     'query_builder' => function(CourseRepository $cr) {
+            //         return $cr->createQueryBuilder('c')
+            //             ->orderBy('c.title', 'ASC');
+            //     },
+            //     'choices' => [],
+            // ])
         ;
     }
 

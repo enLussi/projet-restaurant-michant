@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Menu;
 use App\Form\MenuFormType;
+use App\Repository\CourseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +25,7 @@ class MenusController extends AbstractController
     #[Route('/ajout', name: 'add')]
     public function add(
         Request $request,
+        CourseRepository $courseRepository,
         EntityManagerInterface $entityManager
     ): Response
     {
@@ -36,7 +38,23 @@ class MenusController extends AbstractController
 
         $menu_form->handleRequest($request);
 
+        
+
         if($menu_form->isSubmitted() && $menu_form->isValid()) {
+            dd($menu_form);
+            $count = 0;
+
+            // On boucle sur tous les select des catégories de plat
+            while ($request->request->has('menu_form_courses'.$count)) {
+
+                foreach($menu_form->get('menu_form_courses'.$count) as $course) {
+                    $menu->addCourse($courseRepository->find($course));
+                }
+
+                $courseId = $request->request->get('menu_form_courses'.$count);
+                
+                $count ++;
+            }
 
             $entityManager->persist($menu);
             $entityManager->flush();
@@ -66,7 +84,11 @@ class MenusController extends AbstractController
 
         $menu_form->handleRequest($request);
 
+  
+
         if($menu_form->isSubmitted() && $menu_form->isValid()) {
+
+            
 
             $entityManager->persist($menu);
             $entityManager->flush();

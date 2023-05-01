@@ -39,6 +39,20 @@ class CourseCategoryRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+    * @return CourseCategory[] Returns an array of CourseCategory objects
+    */
+    public function findBySetmenuId(int $id): array
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.setMenus', 's')
+            ->andWhere('s.id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return CourseCategory[] Returns an array of CourseCategory objects
 //     */

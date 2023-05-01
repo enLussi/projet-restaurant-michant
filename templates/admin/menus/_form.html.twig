@@ -1,7 +1,8 @@
 {{ form_start(menuForm) }}
     {{ form_row(menuForm.title) }}
     {{ form_row(menuForm.setmenu) }}
-    {{ form_row(menuForm.courses) }}
+    {# {{ form_row(menuForm.courses) }} #}
+    <div id="courseSelect"></div>
 
     <button type="submit">{{ label | default('Ajouter') }} le Menu</button>
 {{ form_end(menuForm) }}
