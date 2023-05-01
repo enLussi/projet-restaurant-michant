@@ -16,6 +16,9 @@ class Picture
     #[ORM\Column(length: 100)]
     private ?string $title = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $file_name = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Picture
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getFileName(): ?string
+    {
+        return $this->file_name;
+    }
+
+    public function setFileName(string $file_name): self
+    {
+        $this->file_name = $file_name;
 
         return $this;
     }
