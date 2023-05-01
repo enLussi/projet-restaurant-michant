@@ -42,6 +42,10 @@ class SetMenusController extends AbstractController
             $entityManager->persist($setmenu);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Formule ajoutée avec succès');
+
+            return $this->redirectToRoute('app_setmenus_index');
+
         }
 
         return $this->render('admin/setmenus/add.html.twig', [
@@ -65,6 +69,10 @@ class SetMenusController extends AbstractController
 
             $entityManager->persist($setmenu);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Formule modifiée avec succès');
+
+            return $this->redirectToRoute('app_setmenus_index');
 
         }
         return $this->render('setmenus/index.html.twig', [
