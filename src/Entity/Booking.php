@@ -23,11 +23,23 @@ class Booking
     private ?int $covers = null;
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Customer $customer = null;
 
     #[ORM\ManyToMany(targetEntity: Allergen::class, mappedBy: 'bookings')]
     private Collection $allergens;
+
+    #[ORM\Column(length: 100)]
+    private ?string $customer_firstname = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $customer_lastname = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $customer_phone = null;
+
+    #[ORM\Column(length: 150)]
+    private ?string $customer_mail = null;
 
     public function __construct()
     {
@@ -98,6 +110,54 @@ class Booking
         if ($this->allergens->removeElement($allergen)) {
             $allergen->removeBooking($this);
         }
+
+        return $this;
+    }
+
+    public function getCustomerFirstname(): ?string
+    {
+        return $this->customer_firstname;
+    }
+
+    public function setCustomerFirstname(string $customer_firstname): self
+    {
+        $this->customer_firstname = $customer_firstname;
+
+        return $this;
+    }
+
+    public function getCustomerLastname(): ?string
+    {
+        return $this->customer_lastname;
+    }
+
+    public function setCustomerLastname(string $customer_lastname): self
+    {
+        $this->customer_lastname = $customer_lastname;
+
+        return $this;
+    }
+
+    public function getCustomerPhone(): ?string
+    {
+        return $this->customer_phone;
+    }
+
+    public function setCustomerPhone(string $customer_phone): self
+    {
+        $this->customer_phone = $customer_phone;
+
+        return $this;
+    }
+
+    public function getCustomerMail(): ?string
+    {
+        return $this->customer_mail;
+    }
+
+    public function setCustomerMail(string $customer_mail): self
+    {
+        $this->customer_mail = $customer_mail;
 
         return $this;
     }

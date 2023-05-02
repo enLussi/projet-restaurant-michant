@@ -26,7 +26,11 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'E-mail'
+                'label' => 'E-mail',
+                'constraints' => [
+                    new NotBlank(),
+                    new Regex('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/')
+                ],
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom'

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BookingController!{% endblock %}
+
+{% block body %} 
+    {{ form_start (bookingForm) }}
+        {{ form_row(bookingForm.customer_firstname) }}
+        {{ form_row(bookingForm.customer_lastname) }}
+        {{ form_row(bookingForm.customer_phone) }}
+        {{ form_row(bookingForm.customer_mail) }}
+        {{ form_row(bookingForm.covers) }}
+        {{ form_row(bookingForm.booking_date) }}
+        {{ form_row(bookingForm.allergens) }}
+
+        <button type="submit"> Envoyer la réservation </button>
+    {{ form_end (bookingForm) }}
+{% endblock %}

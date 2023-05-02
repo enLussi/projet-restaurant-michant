@@ -48,7 +48,7 @@ class MenusController extends AbstractController
                     $menu->addCourse($courseRepository->find($course));
                 }
 
-                $courseId = $request->request->get('menu_form_courses'.$count);
+                // $courseId = $request->request->get('menu_form_courses'.$count);
                 
                 $count ++;
             }
