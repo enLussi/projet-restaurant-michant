@@ -28,6 +28,9 @@ class Hours
     #[ORM\Column]
     private ?bool $lunch = null;
 
+    #[ORM\Column(length: 20)]
+    private ?string $label = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Hours
     public function setLunch(bool $lunch): self
     {
         $this->lunch = $lunch;
+
+        return $this;
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): self
+    {
+        $this->label = $label;
 
         return $this;
     }

@@ -1,0 +1,19 @@
+{{ form_start(hoursForm) }}
+{% for groups in hoursForm|batch(6)%}
+    {% if loop.index0 < 7 %}
+    <fieldset>
+        <legend>{{ labels[loop.index - 1] }}</legend>
+        {% for inputs in groups|batch(3) %}
+            <div>
+                <p>{% if loop.index == 1 %} Midi {% else %} Dinner {% endif %}</p>
+            {% for input in inputs %}
+                {{ form_row(input) }}
+            {% endfor %}
+            </div>
+        {% endfor %}
+    </fieldset>
+    {% endif %}
+{% endfor %}
+
+    <button type="submit">{{ label | default('Ajouter') }} les Horaires</button>
+{{ form_end(hoursForm) }}
