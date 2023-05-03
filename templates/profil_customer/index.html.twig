@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil Utilisateur{% endblock %}
+
+{% block body %}
+    {% for book in books %}
+    <div>
+        <p>Réservation pour {{ book.covers }} personne{% if book.covers > 1 %}s{% endif %}</p>
+        <p>Le {{book.bookingDate|date('d/m/Y')}} à {{ book.bookingDate|date('H:i') }}</p>
+    </div>
+        
+    {% endfor %}
+{% endblock %}
