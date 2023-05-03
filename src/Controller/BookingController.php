@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Booking;
 use App\Entity\Customer;
 use App\Form\BookingFormType;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,7 +41,7 @@ class BookingController extends AbstractController
         // et que l'objet User et bien un Customer
         // un Admin n'aura pas les mêmes méthodes et
         // accesseurs.
-        if ($user && $user instanceof Customer){
+        if ($user && $user instanceof Customer && !$booking_form->isSubmitted()){
 
             // On récupère les données son forme
             // d'objet Booking
@@ -52,7 +53,7 @@ class BookingController extends AbstractController
             $data->setCustomerPhone($user->getPhone());
             $data->setCustomerMail($user->getEmail());
             $data->setCovers($user->getDefaultCovers());
-            $data->setCustomer($user);
+
 
             foreach($user->getAllergens() as $allergen) {
                 $data->addAllergens($allergen);
@@ -64,10 +65,33 @@ class BookingController extends AbstractController
 
         if($booking_form->isSubmitted() && $booking_form->isValid()) {
 
+            $data = $booking_form->getData();
+
+            // On sépare les heures et les minutes
+            $slot = explode(':', $request->request->get('radio_books'));
+            // On crée un timestamp(int) à partir des heures et minutes +
+            // la sélection dans le calendrier
+            $book_slot_time = mktime(
+                $slot[0], 
+                $slot[1], 
+                0, 
+                $booking_form->getData()->getBookingDate()->format('n'), 
+                $booking_form->getData()->getBookingDate()->format('j'), 
+                $booking_form->getData()->getBookingDate()->format('Y')
+            );
+
+            // On applique le nouveau DateTimeImmutable avec le nouveau timestamp
+            $data->setBookingDate((new DateTimeImmutable())->setTimestamp($book_slot_time));
+            if($user) {
+                
+                $data->setCustomer($user);
+            }
+
             $this->addFlash('success', 'Réservation effectué avec succès');
 
             $entityManager->persist($booking);
             $entityManager->flush();
+            return $this->redirectToRoute('main');
         }
 
 

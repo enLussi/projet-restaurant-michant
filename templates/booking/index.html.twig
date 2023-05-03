@@ -2,6 +2,10 @@
 
 {% block title %}Hello BookingController!{% endblock %}
 
+{% block javascripts %}
+    <script async defer src="/assets/js/booking.js"></script>
+{% endblock %}
+
 {% block body %} 
     {{ form_start (bookingForm) }}
         {{ form_row(bookingForm.customer_firstname) }}
@@ -10,6 +14,8 @@
         {{ form_row(bookingForm.customer_mail) }}
         {{ form_row(bookingForm.covers) }}
         {{ form_row(bookingForm.booking_date) }}
+        <div id="booking_hours">
+        </div>
         {{ form_row(bookingForm.allergens) }}
 
         <button type="submit"> Envoyer la réservation </button>
