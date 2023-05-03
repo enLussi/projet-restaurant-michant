@@ -41,8 +41,12 @@ class BookingController extends AbstractController
         // un Admin n'aura pas les mêmes méthodes et
         // accesseurs.
         if ($user && $user instanceof Customer){
+
+            // On récupère les données son forme
+            // d'objet Booking
             $data = $booking_form->getData();
 
+            // On défini les valeur par défaut de l'utilisateur
             $data->setCustomerFirstname($user->getFirstname());
             $data->setCustomerLastname($user->getLastname());
             $data->setCustomerPhone($user->getPhone());
@@ -54,6 +58,7 @@ class BookingController extends AbstractController
                 $data->addAllergens($allergen);
             }
 
+            // Et on rempli le formulaire des données utilisateur
             $booking_form->setData($data);
         } 
 
