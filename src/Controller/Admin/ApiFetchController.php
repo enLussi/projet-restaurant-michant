@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\CourseCategory;
+use App\Repository\AllergenRepository;
 use App\Repository\BookingRepository;
 use App\Repository\CourseCategoryRepository;
 use App\Repository\CourseRepository;
@@ -59,7 +60,7 @@ class ApiFetchController extends AbstractController
     }
 
     #[Route('/api/fetch/booking', name: 'app_api_fetch_booking')]
-    public function fetchBooking(
+    public function fetchAvailableBooking(
         Request $request,
         BookingRepository $bookingRepository,
         HoursRepository $hoursRepository
@@ -75,7 +76,7 @@ class ApiFetchController extends AbstractController
         $day_hours = $hoursRepository->findBy(['label' => $day]);
 
         // On récupère les réservations du jour
-        $all_booking = $bookingRepository->findByDate(
+        $all_booking = $bookingRepository->findByDateInterval(
             new DateTimeImmutable(strtotime($timestamp)), 
             new DateTimeImmutable(strtotime(strval(intval($timestamp) +24*60*60)))
         );
@@ -117,4 +118,53 @@ class ApiFetchController extends AbstractController
         // On renvoie les données pour traitement et affichage
         return new JsonResponse($hours_available);
     }
+
+    #[Route('/api/fetch/bookings', name: 'app_api_fetch_booking')]
+    public function fetchBookings(
+        Request $request,
+        BookingRepository $bookingRepository
+    ): Response
+    {
+        $date = $request->query->get('date');
+
+        $formatted_date = (new DateTimeImmutable())->createFromFormat('Y-m-d', $date);
+
+        $bookings = $bookingRepository->findByDateInterval(
+            $formatted_date->format('Y-m-d'),
+            (new DateTimeImmutable())
+                ->createFromFormat(
+                    'Y-m-d', 
+                    date('Y-m-d', $formatted_date->getTimestamp()+24*60*60)
+                )->format('Y-m-d')
+        );
+
+        dd($bookings[0]->getAllergens());
+
+        // var_dump($bookings);
+        $formatted_bookingsArray = [];
+        foreach($bookings as $b) {
+            array_push($formatted_bookingsArray, [
+                'date' => $b->getBookingDate(),
+                'customerFirstname' => $b->getCustomerFirstname(),
+                'customerLastanme' => $b->getCustomerLastname(),
+                'customerPhone' => $b->getCustomerPhone(),
+                'customerEmail' => $b->getCustomerMail(),
+                'covers' => $b->getCovers(),
+                'allergens' => $b->getAllergens(),
+            ]);
+        }
+
+
+        return new JsonResponse($formatted_bookingsArray);
+    }
 }
+// function() use ($b) {
+//     $allergens = [];
+//     foreach($b->getAllergens() as $allergen) {
+//         array_push($allergens, [
+//             'label' => $allergen->getLabel()
+//         ]);
+//     };
+//     dd($allergens);
+//     return $allergens;
+// }

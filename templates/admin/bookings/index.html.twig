@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BookingsController!{% endblock %}
+
+{% block javascripts %}
+    <script async defer src="/assets/js/bookingsList.js"></script>
+{% endblock %}
+
+{% block body %}
+<div>
+    <label for="books_date">Sélectionner un jour pour voir les réservations</label>
+    <input type="date" id="books_date">
+</div>
+{% endblock %}
