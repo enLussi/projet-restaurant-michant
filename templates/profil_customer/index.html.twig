@@ -3,11 +3,27 @@
 {% block title %}Profil Utilisateur{% endblock %}
 
 {% block body %}
+    <section>
+        {{ form_start (userForm) }}
+            {{ form_row (userForm.firstname) }}
+            {{ form_row (userForm.lastname) }}
+            {{ form_row (userForm.email) }}
+            {{ form_row (userForm.phone) }}
+            {{ form_row (userForm.default_covers) }}
+            {{ form_row (userForm.customer_allergens) }}
+            <button type="submit">Modifier mes informations</button>
+        {{ form_end (userForm) }}
+        <div>
+            <a href="{{ path('forgotten_password') }}">Modifier mon mot de passe</a>
+        </div>
+    </section>
+    <section>
+    <p>Réservations</p>
     {% for book in books %}
     <div>
         <p>Réservation pour {{ book.covers }} personne{% if book.covers > 1 %}s{% endif %}</p>
         <p>Le {{book.bookingDate|date('d/m/Y')}} à {{ book.bookingDate|date('H:i') }}</p>
     </div>
-        
     {% endfor %}
+    </section>
 {% endblock %}
