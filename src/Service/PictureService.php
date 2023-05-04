@@ -12,7 +12,7 @@ class PictureService
 
   public function __construct(private ParameterBagInterface $params) {}
 
-  public function add(UploadedFile $picture, ?string $folder = "", ?int $width = 250, ?int $height = 250, ?int $cutXPos = 0, ?int $cutYPos = 0) 
+  public function add(UploadedFile $picture, ?string $folder = "", ?int $width = 250, ?int $height = 250) 
   {
     // On donne un nouveau nom à l'image pour 
     // éviter que deux fichier se retrouve à avoir
@@ -49,15 +49,31 @@ class PictureService
         break;
     }
 
-    // On vérifie que le redimensionnement voulu ne déborde
-    // pas du cadre de l'image source, ou rectifie les "cut"
-    // si nécessaire.
-    if ( ($height + $cutYPos) > $pictureH ) { $cutYPos = $pictureH - $height; }
-    if ( ($width + $cutXPos) > $pictureW ) { $cutXPos = $pictureW - $width; }
+        // On vérifie l'orientation de l'image
+        switch($pictureW <=> $pictureH){
+          case -1:
+            //portrait
+            $squareSize= $pictureW;
+            $src_x = 0;
+            $src_y = ($pictureH - $squareSize) / 2;
+            break;
+          case 0:
+            //carré
+            $squareSize= $pictureW;
+            $src_x = 0;
+            $src_y = 0;
+            break;
+          case 1:
+            //paysage
+            $squareSize= $pictureH;
+            $src_x = ($pictureW - $squareSize) / 2;
+            $src_y = 0;
+            break;
+        }
 
     // On crée l'image de destination
     $new_picture = imagecreatetruecolor($width, $height);
-    imagecopyresampled($new_picture, $source, 0, 0, $cutXPos, $cutYPos, $width, $height, $pictureW, $pictureH);
+    imagecopyresampled($new_picture, $source, 0, 0, $src_x, $src_y, $width, $height, $squareSize, $squareSize);
 
 
     // On crée le chemin pour la nouvelle image

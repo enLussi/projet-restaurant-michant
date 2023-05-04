@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class GalleryController extends AbstractController
 {
-    #[Route('/gallery', name: 'app_gallery')]
+    #[Route('/gallerie', name: 'app_gallery')]
     public function index(
         PictureRepository $pictureRepository
     ): Response
