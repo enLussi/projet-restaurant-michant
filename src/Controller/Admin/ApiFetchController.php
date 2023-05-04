@@ -150,7 +150,13 @@ class ApiFetchController extends AbstractController
                 'customerPhone' => $b->getCustomerPhone(),
                 'customerEmail' => $b->getCustomerMail(),
                 'covers' => $b->getCovers(),
-                'allergens' => $b->getAllergens(),
+                'allergens' => function () use ($b) {
+                    $allergens = [];
+                    foreach($b->getAllergens() as $allergen) {
+                        array_push($allergens, $allergen->getLabel());
+                    }
+                    return $allergens;
+                },
             ]);
         }
 
