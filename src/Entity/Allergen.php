@@ -48,7 +48,7 @@ class Allergen
     {
         if (!$this->customers->contains($customer)) {
             $this->customers->add($customer);
-            $customer->addAllergen($this);
+            $customer->addCustomerAllergen($this);
         }
 
         return $this;
@@ -57,7 +57,7 @@ class Allergen
     public function removeCustomer(Customer $customer): self
     {
         if ($this->customers->removeElement($customer)) {
-            $customer->removeAllergen($this);
+            $customer->removeCustomerAllergen($this);
         }
 
         return $this;

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Booking;
 use App\Entity\Customer;
 use App\Form\BookingFormType;
+use App\Repository\AllergenRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +18,8 @@ class BookingController extends AbstractController
     #[Route('/reservation', name: 'app_booking')]
     public function index(
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        AllergenRepository $allergenRepository
     ): Response
     {
 
@@ -71,6 +73,19 @@ class BookingController extends AbstractController
             $slot = explode(':', $request->request->get('radio_books'));
             // On crée un timestamp(int) à partir des heures et minutes +
             // la sélection dans le calendrier
+            
+            if(count($slot) < 2) {
+                $this->addFlash('danger', 'Veuillez choisir un créneau horaire');
+                return $this->redirectToRoute('app_booking');
+            }
+
+            foreach($booking_form->get('allergens')->getData() as $allergen) {
+                $booking->addAllergen($allergen);
+                $i = $allergenRepository->find($allergen->getId());
+                $i->addBooking($booking);
+            }
+
+
             $book_slot_time = mktime(
                 $slot[0], 
                 $slot[1], 
@@ -91,6 +106,7 @@ class BookingController extends AbstractController
 
             $entityManager->persist($booking);
             $entityManager->flush();
+
             return $this->redirectToRoute('main');
         }
 

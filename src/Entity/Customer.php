@@ -75,12 +75,12 @@ class Customer extends User
     /**
      * @return Collection<int, Allergen>
      */
-    public function getAllergens(): Collection
+    public function getCustomerAllergens(): Collection
     {
         return $this->allergens;
     }
 
-    public function addAllergen(Allergen $allergen): self
+    public function addCustomerAllergen(Allergen $allergen): self
     {
         if (!$this->allergens->contains($allergen)) {
             $this->allergens->add($allergen);
@@ -89,7 +89,7 @@ class Customer extends User
         return $this;
     }
 
-    public function removeAllergen(Allergen $allergen): self
+    public function removeCustomerAllergen(Allergen $allergen): self
     {
         $this->allergens->removeElement($allergen);
 

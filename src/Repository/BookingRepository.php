@@ -66,6 +66,16 @@ class BookingRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findAllergensByBooking($id): ?Booking
+   {
+       return $this->createQueryBuilder('b')
+           ->andWhere('b.allergen_id = :val')
+           ->setParameter('val', $id)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
+
 //    /**
 //     * @return Booking[] Returns an array of Booking objects
 //     */

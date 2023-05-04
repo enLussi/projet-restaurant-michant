@@ -23,7 +23,6 @@ class ApiFetchController extends AbstractController
     public function fetchCourse(
         Request $request,
         CourseRepository $courseRepository,
-        SetMenuRepository $setMenuRepository,
         CourseCategoryRepository $courseCategoryRepository
     ): Response
     {
@@ -60,7 +59,7 @@ class ApiFetchController extends AbstractController
     }
 
     #[Route('/api/fetch/booking', name: 'app_api_fetch_booking')]
-    public function fetchAvailableBooking(
+    public function fetchBooking(
         Request $request,
         BookingRepository $bookingRepository,
         HoursRepository $hoursRepository
@@ -119,10 +118,11 @@ class ApiFetchController extends AbstractController
         return new JsonResponse($hours_available);
     }
 
-    #[Route('/api/fetch/bookings', name: 'app_api_fetch_booking')]
+    #[Route('/api/fetch/bookings', name: 'app_api_fetch_bookings')]
     public function fetchBookings(
         Request $request,
-        BookingRepository $bookingRepository
+        BookingRepository $bookingRepository,
+        AllergenRepository $allergenRepository
     ): Response
     {
         $date = $request->query->get('date');
@@ -138,28 +138,22 @@ class ApiFetchController extends AbstractController
                 )->format('Y-m-d')
         );
 
-        dd($bookings[0]->getAllergens());
-
-        // var_dump($bookings);
         $formatted_bookingsArray = [];
         foreach($bookings as $b) {
+            $allergens = [];
+            foreach($b->getAllergens() as $allergen) {
+                array_push($allergens, $allergen->getLabel());
+            }
             array_push($formatted_bookingsArray, [
                 'date' => $b->getBookingDate(),
                 'customerFirstname' => $b->getCustomerFirstname(),
-                'customerLastanme' => $b->getCustomerLastname(),
+                'customerLastname' => $b->getCustomerLastname(),
                 'customerPhone' => $b->getCustomerPhone(),
                 'customerEmail' => $b->getCustomerMail(),
                 'covers' => $b->getCovers(),
-                'allergens' => function () use ($b) {
-                    $allergens = [];
-                    foreach($b->getAllergens() as $allergen) {
-                        array_push($allergens, $allergen->getLabel());
-                    }
-                    return $allergens;
-                },
+                'allergens' => $allergens,
             ]);
         }
-
 
         return new JsonResponse($formatted_bookingsArray);
     }
