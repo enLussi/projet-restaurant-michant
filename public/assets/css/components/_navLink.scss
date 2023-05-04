@@ -1,0 +1,18 @@
+.navLink-light {
+
+  text-decoration: none;
+  color: $light-color;
+
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  font-size: $std-paragraph;
+
+  padding: 5px;
+
+  &:hover {
+
+    border-bottom: 3px solid $secondary-color;
+
+  }
+
+}

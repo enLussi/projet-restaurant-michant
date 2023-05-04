@@ -1,0 +1,32 @@
+<nav>
+  <section class="strip" >
+    <div class="logo-container">
+      <img src="/assets/imgs/logos/logo-full.png" width="250">
+    </div>
+  </section>
+  <section class="navigation">
+    <div class="link-group">
+      <ul>
+        <li class=""><a class="navLink-light" href="{{ path('app_main') }}">Accueil</a></li>
+        <li class=""><a class="navLink-light" href="{{ path('app_menu_page') }}">La Carte</a></li>
+        <li class=""><a class="navLink-light" href="">Nos Menus</a></li>
+      </ul>
+    </div>
+    <div class="link-group">
+      <ul>
+        <li class=""><a class="navLink-light" href="{{ path('app_booking') }}">Réservations</a></li>
+        <li class=""><a class="navLink-light" href="{{ path('app_gallery') }}">Gallerie</a></li>
+        <li class="">
+          {% if app.user %}
+            <a class="navLink-light" href="{{ path('app_profil_customer') }}">Mon compte</a>
+          {% else %}
+            <a class="navLink-light" href="{{ path('app_login') }}">Connexion</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </section>
+  <div class="nav-bg-container">
+    <img class="nav-bg" src="/assets/imgs/bgs/nav-bg.jpg" >
+  </div>
+</nav>

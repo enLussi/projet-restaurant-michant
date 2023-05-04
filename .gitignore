@@ -8,6 +8,7 @@
 /var/
 /vendor/
 /public/assets/imgs
+/public/assets/css/*.scss
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###

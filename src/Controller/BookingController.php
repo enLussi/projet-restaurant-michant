@@ -57,7 +57,7 @@ class BookingController extends AbstractController
             $data->setCovers($user->getDefaultCovers());
 
 
-            foreach($user->getAllergens() as $allergen) {
+            foreach($user->getCustomerAllergens() as $allergen) {
                 $data->addAllergens($allergen);
             }
 
