@@ -7,7 +7,7 @@
     {% for picture in gallery %}
     <div>
         <p>{{ picture.title }}</p>
-        <img src="/assets/imgs/gallery/{{ picture.fileName }}">
+        <img src="/assets/imgs/gallery/{{ picture.fileName }}" title="{{ picture.title }}">
     </div>
     {% endfor %}
 </div>
