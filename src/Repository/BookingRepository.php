@@ -42,12 +42,25 @@ class BookingRepository extends ServiceEntityRepository
     /**
     * @return Booking[] Returns an array of Booking objects
     */
-    public function findByDate($day, $nextday): array
+    public function findByDateInterval($day, $nextday): array
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.booking_date BETWEEN :val AND :next')
             ->setParameter('val', $day)
             ->setParameter('next', $nextday)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+    * @return Booking[] Returns an array of Booking objects
+    */
+    public function findByDate($day): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.booking_date = :val')
+            ->setParameter('val', $day)
             ->getQuery()
             ->getResult()
         ;
