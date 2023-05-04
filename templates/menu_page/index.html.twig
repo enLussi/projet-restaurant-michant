@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MenuPageController!{% endblock %}
+
+{% block body %}
+<div>
+    {% for key,category in sortedCourses %}
+        <div>
+        <p>{{ categories[key] }}</p>
+        {% for course in category %}
+            <div>
+                <p>{{ course.title }}</p>
+                <p>{{ (course.price / 100)|number_format(2, '.', ' ') }} €</p>
+            </div>
+        {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
