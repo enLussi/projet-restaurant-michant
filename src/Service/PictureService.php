@@ -46,6 +46,7 @@ class PictureService
         break;
       default:
         throw new Exception('Format d\'image non valide');
+        break;
     }
 
     // On vérifie que le redimensionnement voulu ne déborde
