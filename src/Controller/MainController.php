@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\HoursRepository;
 use App\Repository\PictureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,11 +12,13 @@ class MainController extends AbstractController
 {
     #[Route('/', name: 'app_main')]
     public function index(
-        PictureRepository $pictureRepository
+        PictureRepository $pictureRepository,
+        HoursRepository $hoursRepository
     ): Response
     {
 
         $gallery = $pictureRepository->findAll();
+        $hours = $hoursRepository->findAll();
 
         if(count($gallery) <= 6) {
             $last_picture = $gallery;
@@ -28,6 +31,7 @@ class MainController extends AbstractController
 
         return $this->render('main/index.html.twig', [
             'gallery' => $last_picture,
+            'hours' => $hours,
         ]);
     }
 }

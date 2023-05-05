@@ -1,0 +1,50 @@
+<section class="main-hours-display">
+  <div class="hours"> 
+    <h4>Nos Horaires d'ouverture</h4>
+    <table> 
+      <tbody>
+        {% for day in hours|batch(2) %}
+        {% set lunch = loop.index0 * 2 %} 
+        {% set dinner = loop.index0 * 2 + 1 %}
+          {% if (day[lunch].isOpen) and (day[dinner].isOpen) %}
+            <tr>
+              <td rowspan="2">{{ day[lunch].labelDay }}</td>
+              <td>{{ day[lunch].opening }} - {{day[lunch].closure}}</td>
+            </tr>
+            <tr>
+              <td>{{ day[dinner].opening }} - {{day[dinner].closure}}</td>
+            </tr>
+          {% else %}
+            {% if (day[lunch].isOpen) %}
+              <tr>
+                <td>{{ day[lunch].labelDay }}</td>
+                <td>{{ day[lunch].opening }} - {{day[lunch].closure}}</td>
+              </tr>
+            {% elseif (day[dinner].isOpen) %}
+              <tr>
+                <td>{{ day[dinner].labelDay }}</td>
+                <td>{{ day[dinner].opening }} - {{day[dinner].closure}}</td>
+              </tr>
+            {% else %}
+              <tr>
+                <td>{{ day[lunch].labelDay }}</td>
+                <td>fermé</td>
+              </tr>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>  
+  </div>
+  <aside class="map">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2281.8797711127586!2d5.928070087079248!3d45.56756285816064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1682669860170!5m2!1sfr!2sfr" 
+      width="600" 
+      height="450" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </aside>
+</section>
