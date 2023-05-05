@@ -1,24 +1,45 @@
-form {
+.login-form-separator {
 
-  min-width: 400px;
-  width: 70%;
-  max-width: 1000px;
+  width: 0;
+
+  border: 3px solid $dark-color;
+
+}
+
+.login-form {
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 
   margin: $nav-content-margin auto $footer-content-margin auto;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  form {
 
-  row-gap: 20px;
-
-  .options-link > * {
-    padding: 0 10px;
-  }
-
-  h1 {
-    margin-bottom: 20px;
+    min-width: 400px;
+    width: 70%;
+    max-width: 600px;
+  
+    padding: 0 70px;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  
+    row-gap: 20px;
+  
+    .options-link > * {
+      padding: 0 10px;
+    }
+  
+    h1 {
+      margin-bottom: 20px;
+    }
+  
   }
 
 }
+
+

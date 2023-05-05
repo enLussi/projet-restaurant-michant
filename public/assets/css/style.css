@@ -84,6 +84,7 @@ h4, h5, h6 {
 
 .form-input {
   min-width: 350px;
+  width: 100%;
   max-width: 800px;
   display: flex;
   flex-direction: column;
@@ -93,6 +94,21 @@ h4, h5, h6 {
 .form-input input {
   font-size: 20px;
   padding: 3px;
+  border: 1px solid #E09F3E;
+  border-radius: 2px;
+}
+.form-input.font-small label {
+  font-size: 15px;
+}
+
+.ts-wrapper .ts-control {
+  border: 1px solid #E09F3E;
+}
+.ts-wrapper .ts-control > div.item {
+  background-color: #E09F3E;
+  color: #FEEFEF;
+  font-size: 15px;
+  border-radius: 2px;
 }
 
 .qa-button {
@@ -253,21 +269,33 @@ footer .footer-legals p {
   font-size: 15px;
 }
 
-form {
+.login-form-separator {
+  width: 0;
+  border: 3px solid #452929;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 150px auto 100px auto;
+}
+.login-form form {
   min-width: 400px;
   width: 70%;
-  max-width: 1000px;
-  margin: 150px auto 100px auto;
+  max-width: 600px;
+  padding: 0 70px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   row-gap: 20px;
 }
-form .options-link > * {
+.login-form form .options-link > * {
   padding: 0 10px;
 }
-form h1 {
+.login-form form h1 {
   margin-bottom: 20px;
 }
 

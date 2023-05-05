@@ -74,6 +74,7 @@ h4, h5, h6 {
 // input de texte, mot de passe, etc
 .form-input{
 	min-width: 350px;
+	width: 100%;
 	max-width: 800px;
 
 	display: flex;
@@ -82,11 +83,36 @@ h4, h5, h6 {
 	row-gap: 5px;
 
 	input {
-
 		font-size: $std-paragraph;
 		padding: 3px;
+
+		border: 1px solid $secondary-color-dark;
+
+		border-radius: 2px;
+	}
+
+	&.font-small {
+		label {
+			font-size: $small-paragraph;
+		}
 	}
 }
+
+.ts-wrapper {
+	.ts-control {
+		border: 1px solid $secondary-color-dark;
+	
+		&>div.item {
+			background-color: $secondary-color-dark;
+			color: $light-color;
+	
+			font-size: $small-paragraph;
+
+			border-radius: 2px;
+		}
+	}
+}
+
 
 //Bouton standart pour le site
 .qa-button {

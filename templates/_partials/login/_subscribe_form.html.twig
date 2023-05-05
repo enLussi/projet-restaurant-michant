@@ -1,0 +1,19 @@
+
+
+{{ form_start(registrationForm) }}
+  <h2>Inscription</h2>
+    {{ form_row(registrationForm.firstname, { 'row_attr': {'class': 'form-input'} }) }}
+                    
+    {{ form_row(registrationForm.lastname, { 'row_attr': {'class': 'form-input'} }) }}
+    {{ form_row(registrationForm.email, { 'row_attr': {'class': 'form-input'} }) }}
+    {{ form_row(registrationForm.phone, { 'row_attr': {'class': 'form-input'} }) }}
+    {{ form_row(registrationForm.customer_allergens, { 'row_attr': {'class': 'form-input'} }) }}
+    {{ form_row(registrationForm.default_covers, { 'row_attr': {'class': 'form-input'} }) }}
+    {{ form_row(registrationForm.plainPassword, { 'row_attr': {'class': 'form-input'} }) }}
+
+    <div>
+      {{ form_widget(registrationForm.RGPDConsent) }}
+      {{ form_label(registrationForm.RGPDConsent, null ,{ 'label_attr': {'class': 'font-small'} }) }}
+    </div>
+    <button type="submit" class="qa-button qa-button-std">S'inscrire</button>
+{{ form_end(registrationForm) }}
