@@ -1,0 +1,44 @@
+<footer>
+  <div>
+    <img src="/assets/imgs/logos/logo-mini.png" width="250">
+  </div>
+  <div>
+    <div>
+      <h4>Adresse</h4>
+      <p>Chemin du Lac 73100 Tresserve</p>
+    </div>
+    <div>
+      <h4>Téléphone</h4>
+      <p>04 25 26 27 28</p>
+    </div>
+    <div>
+      <h4>Email</h4>
+      <p>reception-quaiantique@mail.com</p>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h4>Navigation</h4>
+      <ul>
+        <li class=""><a class="" href="{{ path('app_main') }}">Accueil</a></li>
+        <li class=""><a class="" href="{{ path('app_menu_page') }}">La Carte</a></li>
+        <li class=""><a class="" href="">Nos Menus</a></li>
+        <li class=""><a class="" href="{{ path('app_booking') }}">Réservations</a></li>
+        <li class=""><a class="" href="{{ path('app_gallery') }}">Gallerie</a></li>
+        <li class="">
+          {% if app.user %}
+            <a class="" href="{{ path('app_profil_customer') }}">Mon compte</a>
+          {% else %}
+            <a class="" href="{{ path('app_login') }}">Connexion</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+    <div>
+      <p>{ footer_hours_message }</p>
+    </div>
+  </div>
+  <div>
+    <p>Copyright 2023-2024 Tous droits réservés - Mention légales - Politique de confidentialité</p>
+  </div>
+</footer>
