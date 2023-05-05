@@ -19,8 +19,8 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
-	font: inherit;
+	font-size: $std-paragraph;
+	font-family: 'Roboto', sans-serif;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -46,3 +46,23 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+a {
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Kaushan Script', cursive;
+}
+h1, h2, h3 {
+	font-size: $std-title;
+}
+h4, h5, h6 {
+	font-size: $small-title;
+}
+
+.font-light {
+  color: $light-color;
+}
+.bold {
+  font-weight: 500;
+}
+
