@@ -1,0 +1,10 @@
+<section class="main-gallery">
+  <div class="pictures">
+    {% for picture in gallery %}
+      <img src="/assets/imgs/gallery/{{ picture.fileName }}" title="{{ picture.title }}">
+    {% endfor %} 
+  </div>
+  <div> 
+    <a class="qa-button qa-button-std" href="{{ path('app_gallery') }}">Découvrez plus de photos</a>
+  </div>
+</section>
