@@ -20,6 +20,7 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   font-size: 20px;
+  color: #452929;
   font-family: "Roboto", sans-serif;
   vertical-align: baseline;
 }
@@ -89,15 +90,29 @@ h4, h5, h6 {
   border-bottom: 3px solid #FFF3B0;
 }
 
+.navLink-dark {
+  text-decoration: none;
+  color: #452929;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  padding: 5px;
+}
+.navLink-dark:hover {
+  border-bottom: 3px solid #FFF3B0;
+}
+
 nav {
   width: 100%;
   position: relative;
+}
+nav .shadowed {
+  box-shadow: 0 50px 50px rgba(0, 0, 0, 0.5);
 }
 nav .strip {
   width: inherit;
   height: 100px;
   background-color: #9E2A2B;
-  box-shadow: 0 50px 50px rgba(0, 0, 0, 0.5);
 }
 nav .strip .logo-container {
   width: 350px;
