@@ -60,10 +60,62 @@ h4, h5, h6 {
 	font-size: $small-title;
 }
 
+.font-small {
+	font-size: $small-paragraph;
+}
+
 .font-light {
   color: $light-color;
 }
 .bold {
   font-weight: 500;
+}
+
+// input de texte, mot de passe, etc
+.form-input{
+	min-width: 350px;
+	max-width: 800px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	row-gap: 5px;
+
+	input {
+
+		font-size: $std-paragraph;
+		padding: 3px;
+	}
+}
+
+//Bouton standart pour le site
+.qa-button {
+	border: none;
+
+	font-size: $std-paragraph;
+	font-family: 'Roboto', sans-serif;
+
+
+	border-radius: 5px;
+
+	padding: 15px;
+}
+
+.qa-button.qa-button-std {
+	color: $light-color;
+
+	background-color: $main-color;
+
+	&:hover:not(:disabled) {
+		box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.25);
+	}
+
+	&:active:not(:disabled) {
+		box-shadow: inset 0 0 10px rgba($color: #000000, $alpha: 0.5);
+	}
+
+	&:disabled {
+		background-color: $disabled-color;
+	}
 }
 
