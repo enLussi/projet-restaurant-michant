@@ -47,6 +47,8 @@ nav {
 
       padding: 0 30px;
 
+      margin-top: 20px;
+
       ul {
         display: flex;
 
@@ -70,10 +72,12 @@ nav {
 
     .nav-bg {
 
-      width: 100%;
+      width: 110%;
       position: absolute;
 
       top: -250px;
+      left: 50%;
+      transform: translateX(-50%);
 
       filter: blur(5px);
 

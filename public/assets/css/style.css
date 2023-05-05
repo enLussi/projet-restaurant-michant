@@ -117,6 +117,7 @@ nav .navigation {
 }
 nav .navigation .link-group {
   padding: 0 30px;
+  margin-top: 20px;
 }
 nav .navigation .link-group ul {
   display: flex;
@@ -131,9 +132,11 @@ nav .nav-bg-container {
   overflow: hidden;
 }
 nav .nav-bg-container .nav-bg {
-  width: 100%;
+  width: 110%;
   position: absolute;
   top: -250px;
+  left: 50%;
+  transform: translateX(-50%);
   filter: blur(5px);
 }
 

@@ -104,7 +104,7 @@ class HoursController extends AbstractController
                             break;
                         case "open":
                             $index_data = $this->searchInData($hours_data, $state);
-                            if($index_data) {
+                            if($index_data !== false) {
                                 $hours_data[$index_data]->setOpen(
                                     $form_data
                                 ); 
@@ -141,7 +141,7 @@ class HoursController extends AbstractController
 
             $this->addFlash('success', 'Horaires modifiées avec succès');
 
-            return $this->redirectToRoute('app_hours_index');
+            return $this->redirectToRoute('app_hours_edit');
         }
 
         $hours_form->setData($data);
