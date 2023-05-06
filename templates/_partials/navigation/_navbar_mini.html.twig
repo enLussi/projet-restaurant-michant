@@ -5,20 +5,26 @@
     </div>
   </section>
   <section class="navigation">
-    <div class="link-group">
+    <div class="link-group nav-left">
       <ul>
         <li class=""><a class="navLink-dark" href="{{ path('app_main') }}">Accueil</a></li>
         <li class=""><a class="navLink-dark" href="{{ path('app_menu_page') }}">La Carte</a></li>
         <li class=""><a class="navLink-dark" href="{{ path('app_menu_page') }}">Nos Menus</a></li>
       </ul>
     </div>
-    <div class="link-group">
+    <div class="link-group nav-right">
       <ul>
         <li class=""><a class="navLink-dark" href="{{ path('app_booking') }}">Réservations</a></li>
         <li class=""><a class="navLink-dark" href="{{ path('app_gallery') }}">Gallerie</a></li>
         <li class="">
           {% if app.user %}
+            {% if is_granted('ROLE_CUSTOMER') %}
             <a class="navLink-dark" href="{{ path('app_profil_customer') }}">Mon compte</a>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+            <a class="navLink-dark" href="{{ path('app_admin') }}">Administration</a>
+            {% endif %}
+            <a class="navLink-dark" href="{{ path('app_logout') }}">Déconnexion</a>
           {% else %}
             <a class="navLink-dark" href="{{ path('app_login') }}">Connexion</a>
           {% endif %}

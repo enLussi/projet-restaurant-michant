@@ -260,11 +260,20 @@ nav .strip .logo-container {
   justify-content: center;
 }
 nav .navigation {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 350px;
+  display: grid;
+  grid-template-columns: 1fr 350px 1fr;
   height: 30px;
+  width: 100%;
+}
+nav .navigation .nav-left {
+  grid-column: 1;
+  display: flex;
+  justify-content: end;
+}
+nav .navigation .nav-right {
+  grid-column: 3;
+  display: flex;
+  justify-content: start;
 }
 nav .navigation .link-group {
   padding: 0 30px;

@@ -37,13 +37,25 @@ nav {
 
   .navigation {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    column-gap: $separator;
+    display: grid;
+    grid-template-columns: 1fr $separator 1fr;
 
     height: $nav-height;
+    width: 100%;
+
+    .nav-left {
+      grid-column: 1;
+
+      display: flex;
+      justify-content: end;
+    }
+
+    .nav-right {
+      grid-column: 3;
+
+      display: flex;
+      justify-content: start;
+    }
 
     .link-group {
 
