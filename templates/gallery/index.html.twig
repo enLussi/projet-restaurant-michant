@@ -3,12 +3,10 @@
 {% block title %}Gallerie d'image{% endblock %}
 
 {% block body %}
-<div>
-    {% for picture in gallery %}
-    <div>
-        <p>{{ picture.title }}</p>
-        <img src="/assets/imgs/gallery/{{ picture.fileName }}" title="{{ picture.title }}">
-    </div>
-    {% endfor %}
-</div>
+    {% include "_partials/navigation/_navbar_mini.html.twig" %}
+
+    {% include "_partials/gallery/_list_pictures.html.twig" %}
+    {% include "_partials/main/_booking_link.html.twig" %}
+
+    {% include "_partials/navigation/_footer.html.twig" %}
 {% endblock %}

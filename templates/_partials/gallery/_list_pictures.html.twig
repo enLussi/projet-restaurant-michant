@@ -1,0 +1,8 @@
+<section class="gallery">
+  <h1>Gallerie de Photos</h1>
+  <div class="pictures">
+  {% for picture in gallery %}
+    <img src="/assets/imgs/gallery/{{ picture.fileName }}" title="{{ picture.title }}">
+  {% endfor %}
+  </div>
+</section>
