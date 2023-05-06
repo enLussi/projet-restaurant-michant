@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\SetMenu;
 use App\Form\SetMenuFormType;
+use App\Repository\CourseCategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +28,8 @@ class SetMenusController extends AbstractController
     #[Route('/ajout', name: 'add')]
     public function add(        
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        CourseCategoryRepository $courseCategoryRepository
     ): Response
     {
 
@@ -41,6 +43,12 @@ class SetMenusController extends AbstractController
 
             $entityManager->persist($setmenu);
             $entityManager->flush();
+
+            foreach($setmenu_form->get('courseCategory')->getData() as $category) {
+                $setmenu->addCourseCategory($category);
+                $i = $courseCategoryRepository->find($category->getId());
+                $i->addSetMenu($setmenu);
+            }
 
             $this->addFlash('success', 'Formule ajoutée avec succès');
 

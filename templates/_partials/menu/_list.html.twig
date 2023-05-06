@@ -1,0 +1,33 @@
+<section class="menu">
+  <h1>La Carte</h1>
+  <div>
+  {% for key,category in sortedCourses %}
+      <div class="collapser">
+        <label for="category_{{ key }}">{{ categories[key] }}</label>
+        <input type="checkbox" id="category_{{ key }}" value="{{ key }}">
+      </div>
+      <div class="category-content hidden" id="courses_{{ key }}">
+      {% for course in category %}
+        <div>
+          <p>{{ course.title }}</p>
+          <p>{{ (course.price / 100)|number_format(2, '.', ' ') }} €</p>
+        </div>
+      {% endfor %}
+      </div>
+  {% endfor %}
+    <div class="collapser">
+      <label for="category_menu">Menus</label>
+      <input type="checkbox" id="category_menu" value="menu">
+    </div>
+    <div class="category-content hidden" id="courses_menu">
+      {% for menu in menus %}
+        <div>
+          <p>{{ menu.title }}</p>
+          <p>
+          <p>{{ (menu.price / 100)|number_format(2, '.', ' ') }} €</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</section>
