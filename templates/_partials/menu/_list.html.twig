@@ -1,6 +1,42 @@
 <section class="menu">
   <h1>La Carte</h1>
   <div>
+  <div class="collapser">
+      <label for="category_menu">Menus</label>
+      <input type="checkbox" id="category_menu" value="menu">
+    </div>
+    <div class="menu-content hidden" id="courses_menu">
+      {% for menu in menus %}
+        <div class="menu-title">
+          <h4>Menu {{ menu.title }}</h4>
+          <p>{{ (menu.price / 100)|number_format(2, '.', ' ') }} €</p>
+        </div>
+        <div class="setmenu-title">
+          <p>
+            {{ menu.setmenu }} <br> 
+            <span class="font-small">{{ menu.summary }}</span> <br>
+            (
+            {% for category in menu.setmenuCourseCat %} 
+              {{ category.label }}
+              {% if loop.index0 <= category|length %} + {% endif %} 
+            {% endfor %})
+          </p>
+        </div>
+        <div class="menu-courses">
+          {% for category in menu.setmenuCourseCat %}
+          <p class="category"><i class="fa-solid fa-utensils"></i> {{ category.label }}</p>
+            {% for course in menu.courses %}
+              {% if course.category.id == category.id %}
+              <div class="course">
+                <p class="course-title">{{ course.title }}</p>
+                <p class="course-summary font-small">{{ course.summary }}</p>
+              </div>  
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
   {% for key,category in sortedCourses %}
       <div class="collapser">
         <label for="category_{{ key }}">{{ categories[key] }}</label>
@@ -15,19 +51,6 @@
       {% endfor %}
       </div>
   {% endfor %}
-    <div class="collapser">
-      <label for="category_menu">Menus</label>
-      <input type="checkbox" id="category_menu" value="menu">
-    </div>
-    <div class="category-content hidden" id="courses_menu">
-      {% for menu in menus %}
-        <div>
-          <p>{{ menu.title }}</p>
-          <p>
-          <p>{{ (menu.price / 100)|number_format(2, '.', ' ') }} €</p>
-        </div>
-      {% endfor %}
-    </div>
   </div>
 
 </section>

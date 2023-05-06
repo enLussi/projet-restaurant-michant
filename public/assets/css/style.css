@@ -508,7 +508,6 @@ footer .footer-legals p {
   width: 70%;
   margin: 10px auto;
   padding: 20px 0;
-  box-sizing: border-box;
   overflow: hidden;
   transition: all 0.2s ease;
   display: flex;
@@ -523,11 +522,45 @@ footer .footer-legals p {
   flex-direction: row;
   justify-content: space-between;
 }
-.menu > div .category-content.hidden {
+.menu > div .menu-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  width: 90%;
+  margin: 10px auto;
+  padding: 20px 0;
+  row-gap: 10px;
+}
+.menu > div .menu-content .menu-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  row-gap: 5px;
+}
+.menu > div .menu-content .setmenu-title {
+  text-align: center;
+}
+.menu > div .menu-content .menu-courses .category {
+  font-size: 25px;
+  text-indent: 0.5em;
+  margin: 20px 0 10px 0;
+}
+.menu > div .menu-content .menu-courses .course {
+  line-height: 1.2em;
+  padding-bottom: 5px;
+}
+.menu > div .menu-content .menu-courses .course .course-summary {
+  text-indent: 3em;
+}
+.menu > div .category-content.hidden, .menu > div .menu-content.hidden {
   height: 0;
   padding: 0;
 }
-.menu > div .category-content.shown {
+.menu > div .category-content.shown, .menu > div .menu-content.shown {
   height: fit-content;
   padding: 40px 0 20px 0;
 }/*# sourceMappingURL=style.css.map */

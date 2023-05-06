@@ -27,17 +27,23 @@ class MenuPageController extends AbstractController
         $menus = $menuRepository->findAll();
 
         $all_menus = [];
+        $all_courses = [];
 
         foreach ( $menus as $menu) {
+
+            foreach($menu->getCourses() as $course) {
+                array_push($all_courses, $course);
+            }
+
             $all_menus[$menu->getId()] = [
                 'title' => $menu->getTitle(),
                 'setmenu' => $menu->getSetMenu()->getTitle(),
+                'setmenuCourseCat' => $menu->getSetMenu()->getCourseCategory(),
                 'summary' => $menu->getSetMenu()->getSummary(),
                 'price' => $menu->getSetMenu()->getPrice(),
+                'courses' => $all_courses,
             ];
         }
-        
-        dd($menus[0]->getSetMenu()->getCourseCategory());
 
         $sorted_courses = [];
 
