@@ -8,12 +8,12 @@
 
 .login-form {
 
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  // justify-content: center;
 
-  margin: $nav-content-margin auto $footer-content-margin auto;
+  // margin: $nav-content-margin auto $footer-content-margin auto;
 
   form {
 
@@ -21,20 +21,20 @@
     width: 70%;
     max-width: 600px;
   
-    padding: 0 70px;
+    // padding: 0 70px;
   
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: start;
+    // align-items: center;
   
-    row-gap: 20px;
+    // row-gap: 20px;
   
     .options-link > * {
       padding: 0 10px;
     }
   
-    h1 {
+    h2 {
       margin-bottom: 20px;
     }
   

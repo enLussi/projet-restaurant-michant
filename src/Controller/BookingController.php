@@ -6,6 +6,7 @@ use App\Entity\Booking;
 use App\Entity\Customer;
 use App\Form\BookingFormType;
 use App\Repository\AllergenRepository;
+use App\Repository\HoursRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,8 @@ class BookingController extends AbstractController
     public function index(
         Request $request,
         EntityManagerInterface $entityManager,
-        AllergenRepository $allergenRepository
+        AllergenRepository $allergenRepository,
+        HoursRepository $hoursRepository
     ): Response
     {
 
@@ -65,27 +67,23 @@ class BookingController extends AbstractController
             $booking_form->setData($data);
         } 
 
+        
+
         if($booking_form->isSubmitted() && $booking_form->isValid()) {
 
             $data = $booking_form->getData();
 
             // On sépare les heures et les minutes
             $slot = explode(':', $request->request->get('radio_books'));
-            // On crée un timestamp(int) à partir des heures et minutes +
-            // la sélection dans le calendrier
-            
-            if(count($slot) < 2) {
+
+            // On vérifie si l'heure est correct (si une heure a été choisi)
+            if(!count($slot) == 2) {
                 $this->addFlash('danger', 'Veuillez choisir un créneau horaire');
                 return $this->redirectToRoute('app_booking');
             }
 
-            foreach($booking_form->get('allergens')->getData() as $allergen) {
-                $booking->addAllergen($allergen);
-                $i = $allergenRepository->find($allergen->getId());
-                $i->addBooking($booking);
-            }
-
-
+            // On crée un timestamp(int) à partir des heures et minutes +
+            // la sélection dans le calendrier
             $book_slot_time = mktime(
                 $slot[0], 
                 $slot[1], 
@@ -102,6 +100,16 @@ class BookingController extends AbstractController
                 $data->setCustomer($user);
             }
 
+
+
+            // On ajoute les allergens à la réservation
+            foreach($booking_form->get('allergens')->getData() as $allergen) {
+                $booking->addAllergen($allergen);
+                $i = $allergenRepository->find($allergen->getId());
+                $i->addBooking($booking);
+            }
+
+            
             $this->addFlash('success', 'Réservation effectué avec succès');
 
             $entityManager->persist($booking);
@@ -110,9 +118,12 @@ class BookingController extends AbstractController
             return $this->redirectToRoute('main');
         }
 
+        $hours = $hoursRepository->findAll();
+
 
         return $this->render('booking/index.html.twig', [
             'bookingForm' => $booking_form->createView(),
+            'hours' => $hours,
         ]); 
     }
 }

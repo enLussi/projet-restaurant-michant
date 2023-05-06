@@ -41,6 +41,9 @@ class Booking
     #[ORM\Column(length: 150)]
     private ?string $customer_mail = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $message = null;
+
     public function __construct()
     {
         $this->allergens = new ArrayCollection();
@@ -158,6 +161,18 @@ class Booking
     public function setCustomerMail(string $customer_mail): self
     {
         $this->customer_mail = $customer_mail;
+
+        return $this;
+    }
+
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(?string $message): self
+    {
+        $this->message = $message;
 
         return $this;
     }

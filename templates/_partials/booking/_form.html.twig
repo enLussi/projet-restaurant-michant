@@ -1,0 +1,25 @@
+<section class="qa-form booking-form">
+
+{{ form_start (bookingForm) }}
+<h2>Réservation</h2>
+  <div class="form-couple">
+    {{ form_row(bookingForm.customer_firstname, { 'row_attr': {'class': 'form-input'} }) }}
+    {{ form_row(bookingForm.customer_lastname, { 'row_attr': {'class': 'form-input'} }) }}
+  </div>
+  <div class="form-couple">
+    {{ form_row(bookingForm.customer_phone, { 'row_attr': {'class': 'form-input'} }) }}
+    {{ form_row(bookingForm.customer_mail, { 'row_attr': {'class': 'form-input'} }) }}
+  </div>
+  <div class="form-couple">
+    {{ form_row(bookingForm.covers, { 'row_attr': {'class': 'form-input'} }) }}
+    {{ form_row(bookingForm.booking_date, { 'row_attr': {'class': 'form-input'} }) }}
+  </div>
+  <div id="booking_hours">
+  </div>
+  {{ form_row(bookingForm.allergens, { 'row_attr': {'class': 'form-input'} }) }}
+
+  {{ form_row(bookingForm.message, { 'row_attr': {'class': 'form-input'} }) }}
+
+  <button class="qa-button qa-button-std" type="submit"> Envoyer la réservation </button>
+{{ form_end (bookingForm) }}
+</section>

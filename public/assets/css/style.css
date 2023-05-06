@@ -90,6 +90,7 @@ h4, h5, h6 {
   flex-direction: column;
   justify-content: start;
   row-gap: 5px;
+  position: relative;
 }
 .form-input input {
   font-size: 20px;
@@ -97,8 +98,53 @@ h4, h5, h6 {
   border: 1px solid #E09F3E;
   border-radius: 2px;
 }
+.form-input ul {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(100%);
+}
+.form-input ul li {
+  font-size: 10px;
+  color: rgb(216, 71, 71);
+}
+.form-input textarea {
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  padding: 10px;
+  border: 1px solid #E09F3E;
+  border-radius: 2px;
+  resize: none;
+  height: 300px;
+}
 .form-input.font-small label {
   font-size: 15px;
+}
+
+.radio-container {
+  position: relative;
+}
+.radio-container input[type=radio].qa-choice {
+  position: absolute;
+  z-index: -1;
+}
+.radio-container input[type=radio].qa-choice + label {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  border-radius: 5px;
+  padding: 15px;
+  color: #FEEFEF;
+  background-color: #9E2A2B;
+}
+.radio-container input[type=radio].qa-choice:checked + label {
+  background-color: #E09F3E;
+}
+
+.form-couple {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
 }
 
 .ts-wrapper .ts-control {
@@ -131,6 +177,22 @@ h4, h5, h6 {
 }
 .qa-button.qa-button-std:disabled {
   background-color: #BCBCBC;
+}
+
+.qa-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 150px auto 100px auto;
+}
+.qa-form form {
+  padding: 0 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  row-gap: 20px;
 }
 
 .navLink-light {
@@ -274,28 +336,15 @@ footer .footer-legals p {
   border: 3px solid #452929;
 }
 
-.login-form {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 150px auto 100px auto;
-}
 .login-form form {
   min-width: 400px;
   width: 70%;
   max-width: 600px;
-  padding: 0 70px;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  row-gap: 20px;
 }
 .login-form form .options-link > * {
   padding: 0 10px;
 }
-.login-form form h1 {
+.login-form form h2 {
   margin-bottom: 20px;
 }
 
@@ -381,4 +430,31 @@ footer .footer-legals p {
 }
 .main-hours-display .map {
   border: 2px solid #9E2A2B;
+}
+
+.booking-form form {
+  min-width: 400px;
+  width: 70%;
+  max-width: 1000px;
+}
+.booking-form form #booking_hours {
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  row-gap: 70px;
+  margin: 20px 0 40px 0;
+}
+.booking-form form #booking_hours .hours-choice {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 40px;
+}
+.booking-form form #booking_hours .hours-choice .legend-wrapper {
+  flex: 1 0 100%;
 }/*# sourceMappingURL=style.css.map */

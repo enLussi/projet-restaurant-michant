@@ -2,22 +2,21 @@
 
 {% block title %}Hello BookingController!{% endblock %}
 
+{% block stylesheets %}
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+{% endblock %}
+
 {% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+    <script defer src="/assets/js/tomSelectBooking.js"></script>
     <script async defer src="/assets/js/booking.js"></script>
 {% endblock %}
 
 {% block body %} 
-    {{ form_start (bookingForm) }}
-        {{ form_row(bookingForm.customer_firstname) }}
-        {{ form_row(bookingForm.customer_lastname) }}
-        {{ form_row(bookingForm.customer_phone) }}
-        {{ form_row(bookingForm.customer_mail) }}
-        {{ form_row(bookingForm.covers) }}
-        {{ form_row(bookingForm.booking_date) }}
-        <div id="booking_hours">
-        </div>
-        {{ form_row(bookingForm.allergens) }}
+    {% include "_partials/navigation/_navbar_mini.html.twig" %}
 
-        <button type="submit"> Envoyer la réservation </button>
-    {{ form_end (bookingForm) }}
+    {% include "_partials/booking/_form.html.twig" %}
+    {% include "_partials/main/_hours.html.twig" %}
+
+    {% include "_partials/navigation/_footer.html.twig" %}
 {% endblock %}

@@ -1,0 +1,40 @@
+.booking-form {
+
+  form {
+
+    min-width: 400px;
+    width: 70%;
+    max-width: 1000px;
+
+    #booking_hours {
+
+      width: inherit;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: start;
+
+      row-gap: 70px;
+
+      margin: 20px 0 40px 0;
+
+      .hours-choice {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: start;
+        align-items: center;
+
+        column-gap: 10px;
+        row-gap: 40px;
+
+        .legend-wrapper {
+          flex: 1 0 100%;
+        }
+      }
+    }
+
+  }
+
+}

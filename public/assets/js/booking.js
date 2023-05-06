@@ -23,20 +23,24 @@ calendar.onchange = () => {
       Object.entries(books).forEach((periods, index) => {
 
         // On crée la div pour les créneaux de réservation de midi ou soir
-        const period = document.createElement('div');
         const fieldset = document.createElement('fieldset');
-        fieldset.innerHTML += "<legend>"+ periods[0] +"</legend>";
+        fieldset.classList.add('hours-choice')
+        fieldset.innerHTML += "<div class='legend-wrapper'><legend>"+ (periods[0] == 'lunch' ? "Midi" : "Dîner") +"</legend><div>";
 
         // On boucle sur tous les choix de créneaux possible pour
         // créer les champs radios
         periods[1].forEach((book_slot, index) => {
 
+          const radio_container = document.createElement('div');
+          radio_container.classList.add('radio-container');
+
           const radio_book = document.createElement('input');
-          radio_book.id = "booking_form_book_radio"+index;
+          radio_book.id = "booking_form_book_radio_"+periods[0]+index;
           radio_book.type = "radio";
           radio_book.name = "radio_books";
           radio_book.value = book_slot.book;
           radio_book.required = "required";
+          radio_book.classList.add('qa-choice')
 
           const label_book = document.createElement('label');
           label_book.textContent = book_slot.book;
@@ -44,14 +48,16 @@ calendar.onchange = () => {
 
 
           // On ajoute le couple label radio au fieldset
-          fieldset.appendChild(label_book);
-          fieldset.appendChild(radio_book);
+          radio_container.appendChild(radio_book);
+          radio_container.appendChild(label_book);
+
+          fieldset.appendChild(radio_container);
+
         });
 
         // On ajoute le fieldset à la div correspondant au midi ou dinner
         // et on ajoute cette div à la vue
-        period.appendChild(fieldset);
-        book_list.appendChild(period);
+        book_list.appendChild(fieldset);
       });
 
     })

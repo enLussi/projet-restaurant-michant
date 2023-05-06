@@ -9,11 +9,16 @@ $light-color: #FEEFEF;
 $dark-color: #452929;
 $disabled-color: #BCBCBC;
 
+$danger: rgb(216, 71, 71);
+$success: rgb(71, 216, 71);
+$info: rgb(71, 71, 216);
+
 //Définition de la taille de police
 $std-title: 50px;
 $small-title: 30px;
 $std-paragraph: 20px;
 $small-paragraph: 15px;
+$mini-paragraph: 10px;
 
 //layout
 $nav-content-margin: 150px;
