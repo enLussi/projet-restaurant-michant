@@ -1,5 +1,5 @@
 const collapsers = document.querySelectorAll('.collapser');
-const categoryCollapser = document.querySelectorAll('.category-content');
+// const categoryCollapser = document.querySelectorAll('.category-content');
 
 
 console.log(collapsers);
