@@ -5,7 +5,6 @@ const now = new Date();
 const minDate = now.toISOString().split("T")[0];
 
 booksDate.onchange = () => {
-  console.log(booksDate.value, minDate);
 
   const url = `/api/fetch/bookings?date=${booksDate.value}`;
 
