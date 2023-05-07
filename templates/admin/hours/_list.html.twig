@@ -1,4 +1,4 @@
-<section class="admin-gallery">
+<section class="table-admin">
   <h2>Horaires d'ouverture</h2>
   <table class="table striped hovered">
     <thead>
@@ -28,5 +28,7 @@
       {% endfor %}
     </tbody>
   </table> 
-  <a class="qa-button qa-button-std" href="{{ path('app_hours_edit') }}">Modifier les horaires</a>
+  <div>
+    <a class="qa-button qa-button-std" href="{{ path('app_hours_edit') }}">Modifier les horaires</a>
+  </div>
 </section>

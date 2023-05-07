@@ -663,7 +663,7 @@ footer .footer-legals p {
   padding: 40px 0 20px 0;
 }
 
-.table-courses {
+.table-admin {
   min-width: 400;
   width: 80%;
   max-width: 1200px;
@@ -672,6 +672,6 @@ footer .footer-legals p {
   row-gap: 50px;
   margin: 150px auto 100px auto;
 }
-.table-courses h2 {
+.table-admin h2 {
   text-align: center;
 }/*# sourceMappingURL=style.css.map */
