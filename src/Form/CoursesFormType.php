@@ -24,8 +24,9 @@ class CoursesFormType extends AbstractType
                 'label' => 'Description du plat'
             ])
             ->add('price', MoneyType::class ,options:[
-                'label' => 'Prix',
+                'label' => 'Prix €',
                 'divisor' => 100,
+                'currency' => '',
                 'constraints' => [
                     new Positive(
                         message: 'Prix non valide.'

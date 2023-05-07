@@ -44,7 +44,19 @@
 
 		resize: none;
 
-		height: 300px;
+		height: 200px;
+	}
+
+	select {
+		font-size: $small-paragraph;
+		font-family: 'Roboto', sans-serif;
+		padding: 10px;
+
+		border: 1px solid $secondary-color-dark;
+
+		background-color: white;
+
+		border-radius: 2px;
 	}
 
 	&.font-small {

@@ -226,7 +226,15 @@ body {
   border: 1px solid #E09F3E;
   border-radius: 2px;
   resize: none;
-  height: 300px;
+  height: 200px;
+}
+.form-input select {
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  padding: 10px;
+  border: 1px solid #E09F3E;
+  background-color: white;
+  border-radius: 2px;
 }
 .form-input.font-small label {
   font-size: 15px;
@@ -731,4 +739,10 @@ footer .footer-legals p {
 }
 .table-admin #books-results .booking-allergens p, .table-admin #books-results .booking-message p {
   font-size: 15px;
+}
+
+.admin-forms form {
+  min-width: 400px;
+  width: 70%;
+  max-width: 1000px;
 }/*# sourceMappingURL=style.css.map */

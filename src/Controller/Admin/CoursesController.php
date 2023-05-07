@@ -102,7 +102,7 @@ class CoursesController extends AbstractController
         }
 
         return $this->render('admin/courses/edit.html.twig', [
-            'controller_name' => 'CoursesController',
+            'courseForm' => $course_form->createView(),
         ]);
     }
 
