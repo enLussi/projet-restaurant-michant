@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Course;
 use App\Form\CoursesFormType;
+use App\Repository\CourseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,10 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class CoursesController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(
+        CourseRepository $courseRepository
+    ): Response
     {
         return $this->render('admin/courses/index.html.twig', [
-            'controller_name' => 'CoursesController',
+            'courses' => $courseRepository->findAll()
         ]);
     }
 
@@ -104,13 +107,17 @@ class CoursesController extends AbstractController
     }
 
     #[Route('/suppression/{id}', name: 'delete')]
-    public function delete(Course $course): Response
+    public function delete(
+        Course $course,
+        EntityManagerInterface $entityManager
+    ): Response
     {
 
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        return $this->render('admin/courses/index.html.twig', [
-            'controller_name' => 'CoursesController',
-        ]);
+        $entityManager->remove($course);
+        $entityManager->flush();
+
+        return $this->redirect('app_courses_index');
     }
 }

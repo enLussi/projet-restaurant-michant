@@ -1,0 +1,33 @@
+<section class="table-courses">
+
+  <h2>Listes des Plats</h2>
+  <div>
+    <a class="qa-button qa-button-std" href="">Nouveau Plat</a>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom du Plat</th>
+        <th>Catégorie du Plat</th>
+        <th class="center">Prix</th>
+        <th class="center">Commande</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in courses %}
+        <tr>
+          <td>{{ course.id }}</th>
+          <td>{{ course.title }}</th>
+          <td>{{ course.category.label }}</th>
+          <td class="center">{{ (course.price / 100)|number_format(2, '.', ' ') }} €</th>
+          <td class="center">
+            <a class="qa-button qa-button-small qa-button-info" href="/admin/plats/edition/{{ course.id }}">Modifier</a>
+            <a class="qa-button qa-button-small qa-button-danger" href="/admin/plats/suppression/{{ course.id }}">Supprimer</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</section>

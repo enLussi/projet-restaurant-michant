@@ -1,0 +1,47 @@
+.table {
+
+  width: 100%;
+
+  border: 1px solid $disabled-color;
+
+  thead {
+    tr {
+      border-bottom: 1px solid $disabled-color;
+      th {
+        font-weight: 500;
+        height: 25px;
+
+        vertical-align: middle;
+        text-align: start;
+
+        padding: 5px 5px;
+      }
+      th.center {
+        text-align: center;
+      }
+    }
+  }
+  tbody {
+    tr {
+      border-bottom: 1px solid $disabled-color;
+      td {
+        height: 30px;
+
+        vertical-align: middle;
+
+        padding: 5px 5px;
+      }
+      td.center {
+        text-align: center;
+      }
+    }
+    tr:nth-child(odd) {
+      background-color: white;
+    }
+    tr:hover {
+      background-color: $disabled-color;
+    }
+
+  }
+
+}

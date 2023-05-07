@@ -1,0 +1,56 @@
+//Bouton standart pour le site
+.qa-button {
+	border: none;
+
+	font-size: $std-paragraph;
+	font-family: 'Roboto', sans-serif;
+
+	border-radius: 5px;
+
+	padding: 15px;
+
+  &:hover:not(:disabled) {
+		box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.25);
+	}
+
+	&:active:not(:disabled) {
+		box-shadow: inset 0 0 10px rgba($color: #000000, $alpha: 0.5);
+	}
+
+	&:disabled {
+		background-color: $disabled-color;
+	}
+}
+
+.qa-button.qa-button-std {
+	color: $light-color;
+
+	background-color: $main-color;
+}
+
+//Bouton d'autres tailles/couleurs
+.qa-button.qa-button-small {
+  font-size: $small-paragraph;
+
+  padding: 7px;
+
+  border-radius: 3px;
+}
+
+.qa-button.qa-button-danger {
+  color: $light-color;
+
+  background-color: $danger;
+}
+
+.qa-button.qa-button-success {
+  color: $light-color;
+
+  background-color: $success;
+}
+
+.qa-button.qa-button-info {
+  color: $light-color;
+
+  background-color: $info;
+}
