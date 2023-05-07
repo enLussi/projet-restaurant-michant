@@ -1,0 +1,35 @@
+<section class="table-courses">
+
+  <h2>Listes des Menus</h2>
+  <div>
+    <a class="qa-button qa-button-std" href="/admin/menus/ajout">Nouveau Menu</a>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom du Menu</th>
+        <th>Formule associée</th>
+        <th class="center">Prix</th>
+        <th class="center">Commande</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for menu in menus %}
+        <tr>
+          <td>{{ menu.id }}</th>
+          <td>{{ menu.title }}</th>
+          <td 
+            title="({% for category in menu.setmenu.courseCategory %}{{ category.label }}{% if loop.index0 <= category|length %} + {% endif %}{% endfor %})"
+          >{{ menu.setmenu.title }}</th>
+          <td class="center">{{ (menu.setmenu.price / 100)|number_format(2, '.', ' ') }} €</th>
+          <td class="center">
+            <a class="qa-button qa-button-small qa-button-info" href="/admin/menus/edition/{{ menu.id }}">Modifier</a>
+            <a class="qa-button qa-button-small qa-button-danger" href="/admin/menus/suppression/{{ menu.id }}">Supprimer</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</section>

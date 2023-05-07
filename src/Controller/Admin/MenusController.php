@@ -16,10 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class MenusController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(
+        MenuRepository $menuRepository
+    ): Response
     {
         return $this->render('admin/menus/index.html.twig', [
-            'controller_name' => 'MenusController',
+            'menus' => $menuRepository->findAll(),
         ]);
     }
 
@@ -28,7 +30,6 @@ class MenusController extends AbstractController
         Request $request,
         CourseRepository $courseRepository,
         EntityManagerInterface $entityManager,
-        MenuRepository $menuRepository
     ): Response
     {
 
@@ -102,13 +103,17 @@ class MenusController extends AbstractController
     }
 
     #[Route('/suppression/{id}', name: 'delete')]
-    public function delete(): Response
+    public function delete(
+        Menu $menu,
+        EntityManagerInterface $entityManager
+    ): Response
     {
 
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        return $this->render('admin/menus/index.html.twig', [
-            'controller_name' => 'MenusController',
-        ]);
+        $entityManager->remove($menu);
+        $entityManager->flush();
+
+        return $this->redirect('app_menus_index');
     }
 }
