@@ -1,0 +1,34 @@
+<section class="table-courses">
+
+  <h2>Listes des Formules</h2>
+  <div>
+    <a class="qa-button qa-button-std" href="/admin/menus/ajout">Nouvelle Formules</a>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom de la Formule</th>
+        <th>Catégorie de Plats</th>
+        <th class="center">Prix</th>
+        <th class="center">Commande</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for setmenu in setmenus %}
+        <tr>
+          <td>{{ setmenu.id }}</td>
+          <td>{{ setmenu.title }}</td>
+          <td> 
+            {% for category in setmenu.courseCategory %}{{ category.label }}{% if loop.index0 <= category|length %} + {% endif %}{% endfor %}</td>
+          <td class="center">{{ (setmenu.price / 100)|number_format(2, '.', ' ') }} €</td>
+          <td class="center">
+            <a class="qa-button qa-button-small qa-button-info" href="/admin/formules/edition/{{ setmenu.id }}">Modifier</a>
+            <a class="qa-button qa-button-small qa-button-danger" href="/admin/formules/suppression/{{ setmenu.id }}">Supprimer</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</section>

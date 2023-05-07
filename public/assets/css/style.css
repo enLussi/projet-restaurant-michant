@@ -458,18 +458,22 @@ footer .footer-legals p {
   margin-bottom: 100px;
 }
 
-.gallery {
+.gallery, .admin-gallery {
   margin: 150px auto 100px auto;
 }
 
-.main-gallery, .gallery {
+.main-gallery, .gallery, .admin-gallery {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 50px 0;
 }
-.main-gallery .pictures, .gallery .pictures {
+.main-gallery img, .gallery img, .admin-gallery img {
+  box-sizing: content-box;
+  border: 5px solid #9E2A2B;
+}
+.main-gallery .pictures, .gallery .pictures, .admin-gallery .pictures {
   padding: 50px;
   display: flex;
   flex-direction: row;
@@ -477,15 +481,38 @@ footer .footer-legals p {
   column-gap: 20px;
   justify-content: space-around;
 }
-.main-gallery .pictures img, .gallery .pictures img {
+.main-gallery .pictures img, .gallery .pictures img, .admin-gallery .pictures img {
   max-width: 400px;
   min-width: 300px;
-  box-sizing: content-box;
-  border: 5px solid #9E2A2B;
   transition: all 0.2s ease;
 }
-.main-gallery .pictures img:hover, .gallery .pictures img:hover {
+.main-gallery .pictures img:hover, .gallery .pictures img:hover, .admin-gallery .pictures img:hover {
   transform: scale(1.02);
+}
+.main-gallery .pictures-admin, .gallery .pictures-admin, .admin-gallery .pictures-admin {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  justify-content: space-around;
+}
+.main-gallery .pictures-admin .picture img, .gallery .pictures-admin .picture img, .admin-gallery .pictures-admin .picture img {
+  width: 200px;
+}
+.main-gallery .pictures-admin .picture .commande, .gallery .pictures-admin .picture .commande, .admin-gallery .pictures-admin .picture .commande {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.admin-gallery {
+  row-gap: 50px;
+  align-items: start;
+  min-width: 400;
+  width: 80%;
+  max-width: 1200px;
+}
+.admin-gallery h2 {
+  align-self: center;
 }
 
 .booking-link {

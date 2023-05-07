@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\SetMenu;
 use App\Form\SetMenuFormType;
 use App\Repository\CourseCategoryRepository;
+use App\Repository\SetMenuRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,13 +16,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class SetMenusController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(
+        SetMenuRepository $setMenuRepository
+    ): Response
     {
 
-
-
         return $this->render('admin/setmenus/index.html.twig', [
-            'controller_name' => 'SetMenusController',
+            'setmenus' => $setMenuRepository->findAll(),
         ]);
     }
 
@@ -89,10 +90,15 @@ class SetMenusController extends AbstractController
     }
 
     #[Route('/suppression/{id}', name: 'delete')]
-    public function delete(): Response
+    public function delete(
+        SetMenu $setMenu,
+        EntityManagerInterface $entityManager
+    ): Response
     {
-        return $this->render('admin/setmenus/index.html.twig', [
-            'controller_name' => 'SetMenusController',
-        ]);
+
+        $entityManager->remove($setMenu);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_setmenus_index');
     }
 }
