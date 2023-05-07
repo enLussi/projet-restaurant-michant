@@ -47,7 +47,7 @@ class ApiFetchController extends AbstractController
                     'title' => $course->getTitle()
                 ];
 
-                array_push($courses_toexport, $course_toexport);
+                $courses_toexport[$category->getLabel()] = $course_toexport;
             }
 
             array_push($all_courses, $courses_toexport);

@@ -1,8 +1,10 @@
-{{ form_start(menuForm) }}
-    {{ form_row(menuForm.title) }}
-    {{ form_row(menuForm.setmenu) }}
-    {# {{ form_row(menuForm.courses) }} #}
-    <div id="courseSelect"></div>
+<section class="qa-form admin-forms">
+    {{ form_start(menuForm) }}
+    <h1>{{ label | default('Ajouter') }} un Menu</h1>
+        {{ form_row(menuForm.title, { 'row_attr': {'class': 'form-input'} }) }}
+        {{ form_row(menuForm.setmenu, { 'row_attr': {'class': 'form-input'} }) }}
+        <div id="courseSelect"></div>
 
-    <button type="submit">{{ label | default('Ajouter') }} le Menu</button>
-{{ form_end(menuForm) }}
+        <button type="submit">{{ label | default('Ajouter') }} le Menu</button>
+    {{ form_end(menuForm) }}
+</section>

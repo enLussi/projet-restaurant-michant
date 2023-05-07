@@ -745,4 +745,16 @@ footer .footer-legals p {
   min-width: 400px;
   width: 70%;
   max-width: 1000px;
+}
+
+#courseSelect {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  row-gap: 10px;
+  width: 100%;
+}
+#courseSelect > div {
+  width: 80%;
 }/*# sourceMappingURL=style.css.map */

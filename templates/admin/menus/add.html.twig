@@ -1,11 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block javascripts %}
-    <script async defer src="/assets/js/fetchCourse.js"></script>
-{% endblock %}
-
 {% block title %}Ajout de Menu{% endblock %}
 
+{% block stylesheets %}
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+<script async defer src="/assets/js/fetchCourse.js"></script>
+{% endblock %}
+
 {% block body %}
+    {% include "_partials/navigation/_admin_navbar.html.twig" %}  
+
     {% include "admin/menus/_form.html.twig" %}
 {% endblock %}

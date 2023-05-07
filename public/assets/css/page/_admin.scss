@@ -99,3 +99,16 @@
 
 }
 
+#courseSelect {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  row-gap: 10px;
+
+  width: 100%;
+  &>div {
+    width: 80%;
+  }
+}
+

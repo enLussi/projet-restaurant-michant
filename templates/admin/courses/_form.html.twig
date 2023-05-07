@@ -1,5 +1,5 @@
 <section class="qa-form admin-forms">
-  {{ form_start(courseForm, { 'row_attr': {'class': 'form-input'} }) }}
+  {{ form_start(courseForm) }}
   <h1>{{ label | default('Ajouter') }} un Plat</h1>
     {{ form_row(courseForm.title, { 'row_attr': {'class': 'form-input'} }) }}
     {{ form_row(courseForm.summary, { 'row_attr': {'class': 'form-input'} }) }}
