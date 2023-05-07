@@ -1,0 +1,19 @@
+.qa-form {
+	display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  margin: $nav-content-margin auto $footer-content-margin auto;
+
+	form {
+		padding: 0 70px;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  
+    row-gap: 20px;
+	}
+}

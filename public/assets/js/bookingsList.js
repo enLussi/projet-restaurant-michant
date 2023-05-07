@@ -1,5 +1,5 @@
 const booksDate = document.getElementById('books_date');
-const resultsContainer = document.getElementById('results');
+const resultsContainer = document.getElementById('books-results');
 
 const now = new Date();
 const minDate = now.toISOString().split("T")[0];
@@ -22,19 +22,30 @@ booksDate.onchange = () => {
         list_allergen += `${allergen}, `
       });
 
+      console.log(book.message);
+
       result.innerHTML = 
-      `<p>
-        ${formatDate(new Date(Date.parse(book.date.date)))}  /  ${book.customerFirstname}  ${book.customerLastname}
-      </p>
-      <p>
-        ${book.customerPhone} : ${book.customerEmail}
-      </p>
-      <p>
-        Réservation pour ${book.covers} personne${book.covers > 1 ? 's' : ''}
-      </p>
-      <p>
-        Allegènes précisés : ${list_allergen}
-      </p>`;
+      `
+      <div class="header-booking">
+        <div class="customer-coords">
+          <p>${book.customerFirstname}  ${book.customerLastname}</p>
+          <p>${book.customerPhone}</p>
+          <p>${book.customerEmail}</p>
+        </div>
+        <div class="customer-booking">
+          <p class="font-large">Réservation pour ${book.covers} personne${book.covers > 1 ? 's' : ''}</p>
+        </div>
+        <div class="customer-date">
+          <p>${formatDate(new Date(Date.parse(book.date.date)))}</p>
+        </div>
+      </div>
+      <div class="booking-allergens">
+        ${ list_allergen.length > 0 ? '<p>Allergènes précisés :'+list_allergen+'</p>' : '<p>Aucun Allergènes mentionnés</p>' }
+      </div>
+      <div class="booking-message">
+        ${ book.message === null ? '<p>Aucun Message</p>' : '<p>Message :'+ book.message +'</p>' }
+      </div>
+      `;
 
       resultsContainer.appendChild(result);
     });

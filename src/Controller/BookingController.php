@@ -115,7 +115,7 @@ class BookingController extends AbstractController
             $entityManager->persist($booking);
             $entityManager->flush();
 
-            return $this->redirectToRoute('main');
+            return $this->redirectToRoute('app_main');
         }
 
         $hours = $hoursRepository->findAll();

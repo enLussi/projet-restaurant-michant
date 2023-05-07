@@ -1,0 +1,14 @@
+.ts-wrapper {
+	.ts-control {
+		border: 1px solid $secondary-color-dark;
+	
+		&>div.item {
+			background-color: $secondary-color-dark;
+			color: $light-color;
+	
+			font-size: $small-paragraph;
+
+			border-radius: 2px;
+		}
+	}
+}

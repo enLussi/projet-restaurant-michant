@@ -1,8 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainAdminController!{% endblock %}
+{% block title %}Page Administration{% endblock %}
+
+{% block javascripts %}
+    <script async defer src="/assets/js/bookingsList.js"></script>
+{% endblock %}
 
 {% block body %}
   {% include "_partials/navigation/_admin_navbar.html.twig" %}
+
+  {% include "admin/bookings/_list.html.twig" %}
 
 {% endblock %}

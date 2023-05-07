@@ -122,7 +122,6 @@ class ApiFetchController extends AbstractController
     public function fetchBookings(
         Request $request,
         BookingRepository $bookingRepository,
-        AllergenRepository $allergenRepository
     ): Response
     {
         $date = $request->query->get('date');
@@ -152,6 +151,7 @@ class ApiFetchController extends AbstractController
                 'customerEmail' => $b->getCustomerMail(),
                 'covers' => $b->getCovers(),
                 'allergens' => $allergens,
+                'message' => $b->getMessage(),
             ]);
         }
 

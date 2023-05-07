@@ -48,6 +48,7 @@ class BookingRepository extends ServiceEntityRepository
             ->andWhere('t.booking_date BETWEEN :val AND :next')
             ->setParameter('val', $day)
             ->setParameter('next', $nextday)
+            ->orderBy('t.booking_date', 'ASC')
             ->getQuery()
             ->getResult()
         ;

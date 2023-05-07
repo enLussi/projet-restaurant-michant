@@ -78,12 +78,120 @@ body {
   font-size: 15px;
 }
 
+.font-large {
+  font-size: 25px;
+}
+
 .font-light {
   color: #FEEFEF;
 }
 
 .bold {
   font-weight: 500;
+}
+
+.navLink-light {
+  text-decoration: none;
+  color: #FEEFEF;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  padding: 5px;
+}
+.navLink-light:hover {
+  border-bottom: 3px solid #FFF3B0;
+}
+
+.navLink-dark {
+  text-decoration: none;
+  color: #452929;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  padding: 5px;
+}
+.navLink-dark:hover {
+  border-bottom: 3px solid #FFF3B0;
+}
+
+.qa-button {
+  border: none;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  border-radius: 5px;
+  padding: 15px;
+}
+.qa-button:hover:not(:disabled) {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+.qa-button:active:not(:disabled) {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.qa-button:disabled {
+  background-color: #BCBCBC;
+}
+
+.qa-button.qa-button-std {
+  color: #FEEFEF;
+  background-color: #9E2A2B;
+}
+
+.qa-button.qa-button-small {
+  font-size: 15px;
+  padding: 7px;
+  border-radius: 3px;
+}
+
+.qa-button.qa-button-danger {
+  color: #FEEFEF;
+  background-color: rgb(216, 71, 71);
+}
+
+.qa-button.qa-button-success {
+  color: #FEEFEF;
+  background-color: rgb(71, 216, 71);
+}
+
+.qa-button.qa-button-info {
+  color: #FEEFEF;
+  background-color: rgb(71, 71, 216);
+}
+
+.table {
+  width: 100%;
+  border: 1px solid #BCBCBC;
+}
+.table thead tr {
+  border-bottom: 1px solid #BCBCBC;
+}
+.table thead tr th {
+  font-weight: 500;
+  height: 25px;
+  vertical-align: middle;
+  text-align: start;
+  padding: 5px 5px;
+}
+.table thead tr th.center {
+  text-align: center;
+}
+.table tbody tr {
+  border-bottom: 1px solid #BCBCBC;
+}
+.table tbody tr td {
+  height: 30px;
+  vertical-align: middle;
+  padding: 5px 5px;
+}
+.table tbody tr td.center {
+  text-align: center;
+}
+
+.table.striped tr:nth-child(odd) {
+  background-color: white;
+}
+
+.table.hovered tr:hover {
+  background-color: #BCBCBC;
 }
 
 .form-input {
@@ -194,110 +302,6 @@ body {
 .collapser input {
   position: absolute;
   z-index: -1;
-}
-
-.navLink-light {
-  text-decoration: none;
-  color: #FEEFEF;
-  font-weight: 500;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  padding: 5px;
-}
-.navLink-light:hover {
-  border-bottom: 3px solid #FFF3B0;
-}
-
-.navLink-dark {
-  text-decoration: none;
-  color: #452929;
-  font-weight: 500;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  padding: 5px;
-}
-.navLink-dark:hover {
-  border-bottom: 3px solid #FFF3B0;
-}
-
-.qa-button {
-  border: none;
-  font-size: 20px;
-  font-family: "Roboto", sans-serif;
-  border-radius: 5px;
-  padding: 15px;
-}
-.qa-button:hover:not(:disabled) {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-}
-.qa-button:active:not(:disabled) {
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-}
-.qa-button:disabled {
-  background-color: #BCBCBC;
-}
-
-.qa-button.qa-button-std {
-  color: #FEEFEF;
-  background-color: #9E2A2B;
-}
-
-.qa-button.qa-button-small {
-  font-size: 15px;
-  padding: 7px;
-  border-radius: 3px;
-}
-
-.qa-button.qa-button-danger {
-  color: #FEEFEF;
-  background-color: rgb(216, 71, 71);
-}
-
-.qa-button.qa-button-success {
-  color: #FEEFEF;
-  background-color: rgb(71, 216, 71);
-}
-
-.qa-button.qa-button-info {
-  color: #FEEFEF;
-  background-color: rgb(71, 71, 216);
-}
-
-.table {
-  width: 100%;
-  border: 1px solid #BCBCBC;
-}
-.table thead tr {
-  border-bottom: 1px solid #BCBCBC;
-}
-.table thead tr th {
-  font-weight: 500;
-  height: 25px;
-  vertical-align: middle;
-  text-align: start;
-  padding: 5px 5px;
-}
-.table thead tr th.center {
-  text-align: center;
-}
-.table tbody tr {
-  border-bottom: 1px solid #BCBCBC;
-}
-.table tbody tr td {
-  height: 30px;
-  vertical-align: middle;
-  padding: 5px 5px;
-}
-.table tbody tr td.center {
-  text-align: center;
-}
-
-.table.striped tr:nth-child(odd) {
-  background-color: white;
-}
-
-.table.hovered tr:hover {
-  background-color: #BCBCBC;
 }
 
 nav {
@@ -664,7 +668,7 @@ footer .footer-legals p {
 }
 
 .table-admin {
-  min-width: 400;
+  min-width: 400px;
   width: 80%;
   max-width: 1200px;
   display: flex;
@@ -674,4 +678,57 @@ footer .footer-legals p {
 }
 .table-admin h2 {
   text-align: center;
+}
+.table-admin .form-input {
+  max-width: 500px;
+}
+.table-admin #books-results {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+.table-admin #books-results > div {
+  padding: 20px;
+  border: 2px solid #9E2A2B;
+  border-radius: 5px;
+}
+.table-admin #books-results .header-booking {
+  height: 120px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+.table-admin #books-results .header-booking .customer-coords {
+  grid-column: 1;
+  grid-row: 1/4;
+  width: 100%;
+}
+.table-admin #books-results .header-booking .customer-coords p {
+  font-size: 15px;
+}
+.table-admin #books-results .header-booking .customer-booking {
+  grid-column: 2/4;
+  grid-row: 1/4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.table-admin #books-results .header-booking .customer-date {
+  grid-column: 4;
+  grid-row: 1;
+  width: 100%;
+  text-align: end;
+}
+.table-admin #books-results .header-booking .customer-date p {
+  font-size: 15px;
+}
+.table-admin #books-results .booking-allergens, .table-admin #books-results .booking-message {
+  padding: 10px 0;
+}
+.table-admin #books-results .booking-allergens p, .table-admin #books-results .booking-message p {
+  font-size: 15px;
 }/*# sourceMappingURL=style.css.map */

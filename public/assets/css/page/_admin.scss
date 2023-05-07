@@ -1,6 +1,6 @@
 .table-admin {
 
-  min-width: 400;
+  min-width: 400px;
   width: 80%;
   max-width: 1200px;
 
@@ -15,4 +15,78 @@
     text-align: center;
   }
 
+  .form-input {
+    max-width: 500px;
+  }
+
+  #books-results {
+
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+
+    &>div{
+      padding: 20px;
+
+      border: 2px solid $main-color;
+      border-radius: 5px;
+
+
+    }
+
+    .header-booking {
+      height: 120px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+
+      .customer-coords{
+        grid-column: 1;
+        grid-row: 1 / 4;
+
+        width: 100%;
+
+        p {
+          font-size: $small-paragraph;
+        }
+      }
+
+      .customer-booking {
+        grid-column: 2 / 4;
+        grid-row: 1 / 4;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .customer-date {
+        grid-column: 4;
+        grid-row: 1;
+        width: 100%;
+        text-align: end;
+
+        p {
+          font-size: $small-paragraph;
+        }
+      }
+    }
+
+    .booking-allergens, .booking-message {
+
+      padding: 10px 0;
+
+      p {
+        font-size: $small-paragraph;
+      }
+    }
+
+  }
+
 }
+
