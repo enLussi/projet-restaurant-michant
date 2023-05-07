@@ -14,7 +14,7 @@ class MainAdminController extends AbstractController
 
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        return $this->render('admin/main_admin/index.html.twig', [
+        return $this->render('admin/index.html.twig', [
         ]);
     }
 }

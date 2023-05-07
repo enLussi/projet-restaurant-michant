@@ -1,0 +1,23 @@
+<nav>
+  <section class="strip" >
+    <div class="logo-container">
+      <a href="{{ path('app_admin') }}"><img src="/assets/imgs/logos/logo-full.png" width="250"></a>
+    </div>
+  </section>
+  <section class="navigation">
+    <div class="link-group nav-left">
+      <ul>
+        <li class=""><a class="navLink-dark" href="{{ path('app_courses_index') }}">Plats</a></li>
+        <li class=""><a class="navLink-dark" href="{{ path('app_menus_index') }}">Menus</a></li>
+        <li class=""><a class="navLink-dark" href="{{ path('app_setmenus_index') }}">Formules</a></li>
+      </ul>
+    </div>
+    <div class="link-group nav-right">
+      <ul>
+        <li class=""><a class="navLink-dark" href="{{ path('app_hours_index') }}">Horaires</a></li>
+        <li class=""><a class="navLink-dark" href="{{ path('app_gallery_index') }}">Gallerie</a></li>
+        <li class=""><a class="navLink-dark" href="{{ path('app_logout') }}">Déconnexion</a></li>
+      </ul>
+    </div>
+  </section>
+</nav>
