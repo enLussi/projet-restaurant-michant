@@ -17,12 +17,12 @@
     <tbody>
       {% for menu in menus %}
         <tr>
-          <td>{{ menu.id }}</th>
-          <td>{{ menu.title }}</th>
+          <td>{{ menu.id }}</td>
+          <td>{{ menu.title }}</td>
           <td 
             title="({% for category in menu.setmenu.courseCategory %}{{ category.label }}{% if loop.index0 <= category|length %} + {% endif %}{% endfor %})"
-          >{{ menu.setmenu.title }}</th>
-          <td class="center">{{ (menu.setmenu.price / 100)|number_format(2, '.', ' ') }} €</th>
+          >{{ menu.setmenu.title }}</td>
+          <td class="center">{{ (menu.setmenu.price / 100)|number_format(2, '.', ' ') }} €</td>
           <td class="center">
             <a class="qa-button qa-button-small qa-button-info" href="/admin/menus/edition/{{ menu.id }}">Modifier</a>
             <a class="qa-button qa-button-small qa-button-danger" href="/admin/menus/suppression/{{ menu.id }}">Supprimer</a>

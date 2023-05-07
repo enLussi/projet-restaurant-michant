@@ -17,10 +17,10 @@
     <tbody>
       {% for course in courses %}
         <tr>
-          <td>{{ course.id }}</th>
-          <td>{{ course.title }}</th>
-          <td>{{ course.category.label }}</th>
-          <td class="center">{{ (course.price / 100)|number_format(2, '.', ' ') }} €</th>
+          <td>{{ course.id }}</td>
+          <td>{{ course.title }}</td>
+          <td>{{ course.category.label }}</td>
+          <td class="center">{{ (course.price / 100)|number_format(2, '.', ' ') }} €</td>
           <td class="center">
             <a class="qa-button qa-button-small qa-button-info" href="/admin/plats/edition/{{ course.id }}">Modifier</a>
             <a class="qa-button qa-button-small qa-button-danger" href="/admin/plats/suppression/{{ course.id }}">Supprimer</a>
