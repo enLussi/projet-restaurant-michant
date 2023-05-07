@@ -291,10 +291,12 @@ body {
 .table tbody tr td.center {
   text-align: center;
 }
-.table tbody tr:nth-child(odd) {
+
+.table.striped tr:nth-child(odd) {
   background-color: white;
 }
-.table tbody tr:hover {
+
+.table.hovered tr:hover {
   background-color: #BCBCBC;
 }
 

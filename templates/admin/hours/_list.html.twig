@@ -1,0 +1,32 @@
+<section class="admin-gallery">
+  <h2>Horaires d'ouverture</h2>
+  <table class="table striped hovered">
+    <thead>
+      <tr>
+        <th>Jours</th>
+        <th>Midi</th>
+        <th>Soir</th>
+      </tr>
+    </thead> 
+    <tbody>
+      {% for day in hours|batch(2) %}
+      {% set lunch = loop.index0 * 2 %} 
+      {% set dinner = loop.index0 * 2 + 1 %}
+        <tr>
+          <td>{{ day[lunch].labelDay }}</td>
+          <td>
+            {% if (day[lunch].isOpen) %}{{ day[lunch].opening }} - {{day[lunch].closure}}
+            {% else %} fermé
+            {% endif %}
+          </td>
+          <td>
+            {% if (day[dinner].isOpen) %}{{ day[dinner].opening }} - {{day[dinner].closure}}
+            {% else %} fermé
+            {% endif %} 
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table> 
+  <a class="qa-button qa-button-std" href="{{ path('app_hours_edit') }}">Modifier les horaires</a>
+</section>

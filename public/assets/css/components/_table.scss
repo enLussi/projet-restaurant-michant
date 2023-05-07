@@ -35,13 +35,19 @@
         text-align: center;
       }
     }
-    tr:nth-child(odd) {
-      background-color: white;
-    }
-    tr:hover {
-      background-color: $disabled-color;
-    }
-
+    
   }
 
+}
+
+.table.striped {
+  tr:nth-child(odd) {
+    background-color: white;
+  }
+}
+
+.table.hovered {
+  tr:hover {
+    background-color: $disabled-color;
+  }
 }

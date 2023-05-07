@@ -16,10 +16,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class HoursController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(
+        HoursRepository $hoursRepository
+    ): Response
     {
         return $this->render('admin/hours/index.html.twig', [
-            'controller_name' => 'HoursController',
+            'hours' => $hoursRepository->findAll(),
         ]);
     }
 

@@ -3,5 +3,7 @@
 {% block title %}Horaires d'ouverture{% endblock %}
 
 {% block body %}
+  {% include "_partials/navigation/_admin_navbar.html.twig" %}
 
+  {% include "admin/hours/_list.html.twig" %}
 {% endblock %}
