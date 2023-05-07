@@ -1,0 +1,17 @@
+<section class="admin-gallery">
+  <h2>Liste des Photos</h2>
+  <div>
+    <a class="qa-button qa-button-std" href="/admin/gallerie/ajout">Nouvelle Photos</a>
+  </div>
+  <div class="pictures-admin">
+  {% for picture in pictures %}
+    <div class="picture">
+      <img src="/assets/imgs/gallery/{{ picture.fileName }}" title="{{ picture.title }}">
+      <div class="commande">
+        <a class="qa-button qa-button-small qa-button-info" href="/admin/gallerie/edition/{{ picture.id }}">Modifier</a>      
+        <a class="qa-button qa-button-small qa-button-danger" href="/admin/gallerie/suppression/{{ picture.id }}">Supprimer</a>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+</section>

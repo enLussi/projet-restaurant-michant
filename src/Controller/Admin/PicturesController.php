@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Picture;
 use App\Form\PictureFormType;
+use App\Repository\PictureRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,11 +16,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class PicturesController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(
+        PictureRepository $pictureRepository
+    ): Response
     {
 
         return $this->render('admin/gallery/index.html.twig', [
-            'controller_name' => 'SetMenusController',
+            'pictures' => $pictureRepository->findAll(),
         ]);
     }
 
@@ -83,16 +86,21 @@ class PicturesController extends AbstractController
             return $this->redirectToRoute('app_gallery_index');
 
         }
-        return $this->render('admin/gallery/index.html.twig', [
+        return $this->render('admin/gallery/edit.html.twig', [
             'setmenuForm' => $picture_form->createView(),
         ]);
     }
 
     #[Route('/suppression/{id}', name: 'delete')]
-    public function delete(): Response
+    public function delete(
+        Picture $picture,
+        EntityManagerInterface $entityManager
+    ): Response
     {
-        return $this->render('admin/gallery/index.html.twig', [
-            'controller_name' => 'SetMenusController',
-        ]);
+
+        $entityManager->remove($picture);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_gallery_index');
     }
 }

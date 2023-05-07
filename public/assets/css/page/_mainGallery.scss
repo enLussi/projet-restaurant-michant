@@ -2,11 +2,11 @@
   margin-bottom: $footer-content-margin;
 }
 
-.gallery {
+.gallery, .admin-gallery {
   margin: $nav-content-margin auto $footer-content-margin auto;
 }
 
-.main-gallery, .gallery {
+.main-gallery, .gallery, .admin-gallery {
 
   width: 100%;
 
@@ -16,6 +16,11 @@
 
   padding: 50px 0;
 
+  img {
+    box-sizing: content-box;
+
+    border: 5px solid $main-color;
+  }
   
 
   .pictures {
@@ -34,10 +39,6 @@
       max-width: 400px;
       min-width: 300px;
 
-      box-sizing: content-box;
-
-      border: 5px solid $main-color;
-
       transition: all 0.2s ease;
 
       &:hover {
@@ -46,5 +47,39 @@
     }
 
   }
+  .pictures-admin {
 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    column-gap: 20px;
+
+    justify-content: space-around;
+    .picture {
+
+      img {
+        width: 200px;
+      }
+  
+      .commande {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      
+    }
+  }
+}
+
+.admin-gallery {
+  row-gap: 50px;
+  
+  align-items: start;
+  min-width: 400;
+  width: 80%;
+  max-width: 1200px;
+
+  h2 {
+    align-self: center;
+  }
 }
