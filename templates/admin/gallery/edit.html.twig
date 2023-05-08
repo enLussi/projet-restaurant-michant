@@ -3,5 +3,7 @@
 {% block title %}Modifier{% endblock %}
 
 {% block body %}
+    {% include "_partials/navigation/_admin_navbar.html.twig" %}
+
     {% include "admin/gallery/_form.html.twig" with { 'label' : 'Modifier' } %}
 {% endblock %}

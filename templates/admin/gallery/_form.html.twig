@@ -1,5 +1,8 @@
+<section class="qa-form admin-forms">
 {{ form_start(setmenuForm) }}
-    {{ form_row(setmenuForm.title) }}
-    {{ form_row(setmenuForm.picture) }}
-    <button type="submit">{{ label | default('Ajouter') }} l'Image</button>
+    <h1>{{ label | default('Ajouter') }} une Photo</h1>
+    {{ form_row(setmenuForm.title, { 'row_attr': {'class': 'form-input'} }) }}
+    {{ form_row(setmenuForm.picture, { 'row_attr': {'class': 'form-input'} }) }}
+    <button class="qa-button qa-button-std" type="submit">{{ label | default('Ajouter') }} l'Image</button>
 {{ form_end(setmenuForm) }}
+</section>
