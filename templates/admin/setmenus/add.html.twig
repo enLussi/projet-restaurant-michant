@@ -1,7 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SetMenusController!{% endblock %}
+{% block title %}Ajouter une Formule{% endblock %}
+
+{% block stylesheets %}
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+<script defer src="/assets/js/tomSelectSetMenu.js"></script>
+{% endblock %}
 
 {% block body %}
+    {% include "_partials/navigation/_admin_navbar.html.twig" %}
+
     {% include "admin/setmenus/_form.html.twig" %}
 {% endblock %}

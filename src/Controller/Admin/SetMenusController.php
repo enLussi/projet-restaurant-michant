@@ -84,7 +84,7 @@ class SetMenusController extends AbstractController
             return $this->redirectToRoute('app_setmenus_index');
 
         }
-        return $this->render('admin/setmenus/index.html.twig', [
+        return $this->render('admin/setmenus/edit.html.twig', [
             'setmenuForm' => $setmenu_form->createView(),
         ]);
     }

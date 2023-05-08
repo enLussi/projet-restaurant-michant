@@ -1,8 +1,11 @@
+<section class="qa-form admin-forms">
 {{ form_start(setmenuForm) }}
-    {{ form_row(setmenuForm.title) }}
-    {{ form_row(setmenuForm.summary) }}
-    {{ form_row(setmenuForm.price) }}
-    {{ form_row(setmenuForm.courseCategory) }}
+    <h1>{{ label | default('Ajouter') }} une Formule</h1>
+    {{ form_row(setmenuForm.title, { 'row_attr': {'class': 'form-input'} }) }}
+    {{ form_row(setmenuForm.summary, { 'row_attr': {'class': 'form-input'} }) }}
+    {{ form_row(setmenuForm.price, { 'row_attr': {'class': 'form-input'} }) }}
+    {{ form_row(setmenuForm.courseCategory, { 'row_attr': {'class': 'form-input'} }) }}
 
-    <button type="submit">{{ label | default('Ajouter') }} la Formule</button>
+    <button class="qa-button qa-button-std" type="submit">{{ label | default('Ajouter') }} la Formule</button>
 {{ form_end(setmenuForm) }}
+</section>

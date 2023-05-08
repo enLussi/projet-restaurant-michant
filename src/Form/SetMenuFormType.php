@@ -24,8 +24,9 @@ class SetMenuFormType extends AbstractType
                 'label' => 'Description de la Formule'
             ])
             ->add('price', MoneyType::class, options:[
-                'label' => 'Prix',
+                'label' => 'Prix €',
                 'divisor' => 100,
+                'currency' => '',
                 'constraints' => [
                     new Positive(
                         message: 'Prix non valide'
