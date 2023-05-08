@@ -1,19 +1,22 @@
-{{ form_start(hoursForm) }}
-{% for groups in hoursForm|batch(6)%}
-    {% if loop.index0 < 7 %}
-    <fieldset>
-        <legend>{{ labels[loop.index - 1] }}</legend>
-        {% for inputs in groups|batch(3) %}
-            <div>
-                <p>{% if loop.index == 1 %} Midi {% else %} Dinner {% endif %}</p>
-            {% for input in inputs %}
-                {{ form_row(input) }}
+<section class="qa-form admin-forms hours-form">
+    {{ form_start(hoursForm) }}
+    <h1>{{ label | default('Ajouter') }} les Horaires</h1>
+    {% for groups in hoursForm|batch(6)%}
+        {% if loop.index0 < 7 %}
+        <fieldset>
+            <legend class="font-large">{{ labels[loop.index - 1] }}</legend>
+            {% for inputs in groups|batch(3) %}
+                <div class="period">
+                    <p>{% if loop.index == 1 %} Midi {% else %} Dinner {% endif %}</p>
+                {% for input in inputs %}
+                    {{ form_row(input, { 'row_attr': {'class': 'form-input'} }) }}
+                {% endfor %}
+                </div>
             {% endfor %}
-            </div>
-        {% endfor %}
-    </fieldset>
-    {% endif %}
-{% endfor %}
+        </fieldset>
+        {% endif %}
+    {% endfor %}
 
-    <button type="submit">{{ label | default('Ajouter') }} les Horaires</button>
-{{ form_end(hoursForm) }}
+        <button class="qa-button qa-button-std" type="submit">{{ label | default('Ajouter') }} les Horaires</button>
+    {{ form_end(hoursForm) }}
+</section>

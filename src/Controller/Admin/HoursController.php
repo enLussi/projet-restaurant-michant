@@ -55,10 +55,12 @@ class HoursController extends AbstractController
             $index_open = $h->getLabel() . '_' . ($h->isLunch() ? 'lunch' : 'dinner') . '_open';
 
             // Et on les insère dans le tableau data les valeurs
-            // selon les index prédéfini
-            $data[$index_opening] = DateTime::createFromFormat( 'H:i' , $h->getOpening());
-            $data[$index_closure] = DateTime::createFromFormat( 'H:i' , $h->getClosure());
-            $data[$index_open] = $h->isOpen();
+            // selon les index prédéfini 
+
+                $data[$index_opening] = DateTime::createFromFormat( 'H:i' , $h->getOpening());
+                $data[$index_closure] = DateTime::createFromFormat( 'H:i' , $h->getClosure());
+                $data[$index_open] = $h->isOpen();
+
 
 
             // On stocke le label pour l'affichage
@@ -77,14 +79,20 @@ class HoursController extends AbstractController
 
             // $hours_form_data = $request->request->all()['hours_form']; 
 
-            // dd($hours_data);
-            // dd($hours_form_data);
-            // dd($hours_form->getData());
+            // en vérifiant au préalable
+            // que l'heure d'ouverture est bien avant l'heure de fermeture
 
             foreach($hours_form->getData() as $index => $form_data) {
 
                 $state = explode('_', $index);
                 if(count($state) === 3) {
+
+                    if($hours_form->getData()[$state[0].'_'.$state[1].'_opening'] > $hours_form->getData()[$state[0].'_'.$state[1].'_closure']) {
+                        $this->addFlash('danger', 'L\Heure d\'ouverture doit être avant l\'heure de fermeture ('.$state[1].')');
+    
+                        return $this->redirectToRoute('app_hours_edit');
+                    }
+
                     switch($state[2]) {
                         case "opening":
                             $index_data = $this->searchInData($hours_data, $state);

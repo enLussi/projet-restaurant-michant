@@ -2,6 +2,13 @@
 
 {% block title %}Modifier{% endblock %}
 
+
+{% block javascripts %}
+<script async defer src="/assets/js/hoursOpenLabel.js"></script>
+{% endblock %}
+
 {% block body %}
+    {% include "_partials/navigation/_admin_navbar.html.twig" %}  
+
     {% include "admin/hours/_form.html.twig" with { 'label' : 'Modifier' } %}
 {% endblock %}

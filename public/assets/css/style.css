@@ -757,4 +757,39 @@ footer .footer-legals p {
 }
 #courseSelect > div {
   width: 80%;
+}
+
+.hours-form fieldset {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  border: 1px solid #452929;
+  padding: 10px;
+}
+.hours-form fieldset legend {
+  margin-left: 1em;
+}
+.hours-form fieldset .period {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 20px;
+  position: relative;
+}
+.hours-form fieldset .period .form-input {
+  min-width: 100px;
+  width: fit-content;
+}
+.hours-form fieldset .period input[type=checkbox] {
+  position: absolute;
+  z-index: -1;
+}
+.hours-form fieldset .period .notchecked {
+  background-color: rgb(216, 71, 71);
+}
+.hours-form fieldset .period .checked {
+  background-color: rgb(71, 216, 71);
 }/*# sourceMappingURL=style.css.map */
