@@ -7,6 +7,7 @@ use App\Form\SetMenuFormType;
 use App\Repository\CourseCategoryRepository;
 use App\Repository\SetMenuRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,15 +42,20 @@ class SetMenusController extends AbstractController
         $setmenu_form->handleRequest($request);
 
         if ($setmenu_form->isSubmitted() && $setmenu_form->isValid()) {
-
-            $entityManager->persist($setmenu);
-            $entityManager->flush();
-
+            
             foreach($setmenu_form->get('courseCategory')->getData() as $category) {
                 $setmenu->addCourseCategory($category);
                 $i = $courseCategoryRepository->find($category->getId());
                 $i->addSetMenu($setmenu);
             }
+
+            $entityManager->persist($setmenu);
+            try {
+                $entityManager->flush();
+            } catch (Exception $e) {
+                $this->addFlash('danger', 'Une erreur est survenu pendant l\'enregistrement des éléments dans la base de données.');
+            }
+
 
             $this->addFlash('success', 'Formule ajoutée avec succès');
 
@@ -66,7 +72,8 @@ class SetMenusController extends AbstractController
     public function edit(
         SetMenu $setmenu,
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        CourseCategoryRepository $courseCategoryRepository
     ): Response
     {
 
@@ -76,8 +83,18 @@ class SetMenusController extends AbstractController
 
         if ($setmenu_form->isSubmitted() && $setmenu_form->isValid()) {
 
+            foreach($setmenu_form->get('courseCategory')->getData() as $category) {
+                $setmenu->addCourseCategory($category);
+                $i = $courseCategoryRepository->find($category->getId());
+                $i->addSetMenu($setmenu);
+            }
+
             $entityManager->persist($setmenu);
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
+            } catch (Exception $e) {
+                $this->addFlash('danger', 'Une erreur est survenu pendant l\'enregistrement des éléments dans la base de données.');
+            }
 
             $this->addFlash('success', 'Formule modifiée avec succès');
 
@@ -97,7 +114,13 @@ class SetMenusController extends AbstractController
     {
 
         $entityManager->remove($setMenu);
-        $entityManager->flush();
+        try {
+            $entityManager->flush();
+        } catch (Exception $e) {
+            $this->addFlash('danger', 'Une erreur est survenu pendant la suppression des éléments dans la base de données.');
+        }
+
+        $this->addFlash('success', 'Formule supprimée avec succès');
 
         return $this->redirectToRoute('app_setmenus_index');
     }

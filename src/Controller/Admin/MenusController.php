@@ -7,6 +7,7 @@ use App\Form\MenuFormType;
 use App\Repository\CourseRepository;
 use App\Repository\MenuRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,7 +56,11 @@ class MenusController extends AbstractController
             }
 
             $entityManager->persist($menu);
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
+            } catch (Exception $e) {
+                $this->addFlash('danger', 'Une erreur est survenu pendant l\'enregistrement des éléments dans la base de données.');
+            }
 
             $this->addFlash('success', 'Menu ajouté avec succès');
 
@@ -89,9 +94,13 @@ class MenusController extends AbstractController
             
 
             $entityManager->persist($menu);
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
+            } catch (Exception $e) {
+                $this->addFlash('danger', 'Une erreur est survenu pendant l\'enregistrement des éléments dans la base de données.');
+            }
 
-            $this->addFlash('success', 'Menu ajouté avec succès');
+            $this->addFlash('success', 'Menu modifié avec succès');
 
             return $this->redirectToRoute('app_menus_index');
 
@@ -112,7 +121,13 @@ class MenusController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $entityManager->remove($menu);
-        $entityManager->flush();
+        try {
+            $entityManager->flush();
+        } catch (Exception $e) {
+            $this->addFlash('danger', 'Une erreur est survenu pendant la suppression des éléments dans la base de données.');
+        }
+
+        $this->addFlash('success', 'Menu supprimé avec succès');
 
         return $this->redirect('app_menus_index');
     }

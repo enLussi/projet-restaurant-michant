@@ -6,6 +6,7 @@ use App\Entity\Course;
 use App\Form\CoursesFormType;
 use App\Repository\CourseRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,7 +61,11 @@ class CoursesController extends AbstractController
 
             //On persiste dans la base de données
             $entityManager->persist($course);
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
+            } catch (Exception $e) {
+                $this->addFlash('danger', 'Une erreur est survenu pendant l\'enregistrement des éléments dans la base de données.');
+            }
 
             // On affiche un message de confirmation d'ajout
             $this->addFlash('success', 'Plat ajouté avec succès');
@@ -92,10 +97,14 @@ class CoursesController extends AbstractController
 
 
             $entityManager->persist($course);
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
+            } catch (Exception $e) {
+                $this->addFlash('danger', 'Une erreur est survenu pendant l\'enregistrement des éléments dans la base de données.');
+            }
             
             // On affiche un message de confirmation d'ajout
-            $this->addFlash('success', 'Plat ajouté avec succès');
+            $this->addFlash('success', 'Plat modifié avec succès');
 
             return $this->redirectToRoute('app_courses_index');
 
@@ -116,7 +125,13 @@ class CoursesController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $entityManager->remove($course);
-        $entityManager->flush();
+        try {
+            $entityManager->flush();
+        } catch (Exception $e) {
+            $this->addFlash('danger', 'Une erreur est survenu pendant la suppression des éléments dans la base de données.');
+        }
+
+        $this->addFlash('success', 'Plat supprimé avec succès');
 
         return $this->redirect('app_courses_index');
     }

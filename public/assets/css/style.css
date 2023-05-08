@@ -312,6 +312,34 @@ body {
   z-index: -1;
 }
 
+.alert {
+  width: 100%;
+  padding: 20px 50px;
+  margin-top: 100px;
+}
+.alert .alert-message {
+  font-size: 25px;
+  color: #FEEFEF;
+}
+
+.alert-danger {
+  background-color: rgb(216, 71, 71);
+  border-bottom: 3px solid rgb(187, 53, 53);
+  border-top: 3px solid rgb(187, 53, 53);
+}
+
+.alert-success {
+  background-color: rgb(71, 216, 71);
+  border-bottom: 3px solid rgb(53, 187, 53);
+  border-top: 3px solid rgb(53, 187, 53);
+}
+
+.alert-info {
+  background-color: rgb(71, 216, 71);
+  border-bottom: 3px solid rgb(53, 187, 53);
+  border-top: 3px solid rgb(53, 187, 53);
+}
+
 nav {
   width: 100%;
   position: relative;

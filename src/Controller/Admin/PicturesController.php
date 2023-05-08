@@ -7,6 +7,7 @@ use App\Form\PictureFormType;
 use App\Repository\PictureRepository;
 use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,9 +52,13 @@ class PicturesController extends AbstractController
             $picture->setFileName($file);
 
             $entityManager->persist($picture);
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
+            } catch (Exception $e) {
+                $this->addFlash('danger', 'Une erreur est survenu pendant l\'enregistrement des éléments dans la base de données.');
+            }
 
-            $this->addFlash('success', 'Formule ajoutée avec succès');
+            $this->addFlash('success', 'Image ajoutée avec succès');
 
             return $this->redirectToRoute('app_gallery_index');
 
@@ -79,9 +84,13 @@ class PicturesController extends AbstractController
         if ($picture_form->isSubmitted() && $picture_form->isValid()) {
 
             $entityManager->persist($picture);
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
+            } catch (Exception $e) {
+                $this->addFlash('danger', 'Une erreur est survenu pendant l\'enregistrement des éléments dans la base de données.');
+            }
 
-            $this->addFlash('success', 'Formule modifiée avec succès');
+            $this->addFlash('success', 'Image modifiée avec succès');
 
             return $this->redirectToRoute('app_gallery_index');
 
@@ -99,7 +108,13 @@ class PicturesController extends AbstractController
     {
 
         $entityManager->remove($picture);
-        $entityManager->flush();
+        try {
+            $entityManager->flush();
+        } catch (Exception $e) {
+            $this->addFlash('danger', 'Une erreur est survenu pendant la suppression des éléments dans la base de données.');
+        }
+
+        $this->addFlash('success', 'Image supprimée avec succès');
 
         return $this->redirectToRoute('app_gallery_index');
     }

@@ -7,6 +7,7 @@ use App\Form\HoursFormType;
 use App\Repository\HoursRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -88,7 +89,7 @@ class HoursController extends AbstractController
                 if(count($state) === 3) {
 
                     if($hours_form->getData()[$state[0].'_'.$state[1].'_opening'] > $hours_form->getData()[$state[0].'_'.$state[1].'_closure']) {
-                        $this->addFlash('danger', 'L\Heure d\'ouverture doit être avant l\'heure de fermeture ('.$state[1].')');
+                        $this->addFlash('danger', 'L\'Heure d\'ouverture doit être avant l\'heure de fermeture ('.$state[1].')');
     
                         return $this->redirectToRoute('app_hours_edit');
                     }
@@ -147,11 +148,16 @@ class HoursController extends AbstractController
 
             // }
 
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
+            } catch (Exception $e) {
+                $this->addFlash('danger', 'Une erreur est survenu pendant l\'enregistrement des éléments dans la base de données.');
+            }
+
 
             $this->addFlash('success', 'Horaires modifiées avec succès');
 
-            return $this->redirectToRoute('app_hours_edit');
+            return $this->redirectToRoute('app_hours_index');
         }
 
         $hours_form->setData($data);

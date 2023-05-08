@@ -9,6 +9,7 @@ use App\Repository\AllergenRepository;
 use App\Repository\HoursRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -110,11 +111,16 @@ class BookingController extends AbstractController
             }
 
             
-            $this->addFlash('success', 'Réservation effectué avec succès');
-
+            
             $entityManager->persist($booking);
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
+            } catch (Exception $e) {
+                $this->addFlash('danger', 'Une erreur est survenu pendant la création de la réservation.');
+            }
 
+            $this->addFlash('success', 'Réservation effectué avec succès');
+            
             return $this->redirectToRoute('app_main');
         }
 

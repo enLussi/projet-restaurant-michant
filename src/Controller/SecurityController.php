@@ -10,6 +10,7 @@ use App\Repository\UserRepository;
 use App\Security\UserAuthenticator;
 use App\Service\SendMailService;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,7 +58,13 @@ class SecurityController extends AbstractController
             $user->setRoles(["ROLE_CUSTOMER"]);
 
             $entityManager->persist($user);
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
+            } catch (Exception $e) {
+                $this->addFlash('danger', 'Une erreur est survenu pendant l\'enregistrement de vos données.');
+            }
+            $this->addFlash('success', 'Votre inscription s\'est bien déroulée');
+
             // do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(
