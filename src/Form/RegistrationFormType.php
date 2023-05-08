@@ -3,21 +3,26 @@
 namespace App\Form;
 
 use App\Entity\Allergen;
+use App\Entity\Customer;
 use App\Entity\User;
 use App\Repository\AllergenRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Regex;
 
 class RegistrationFormType extends AbstractType
@@ -45,8 +50,23 @@ class RegistrationFormType extends AbstractType
                     new Regex('/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/')
                 ],
             ])
-            ->add('default_covers', NumberType::class, [
-                'label' => 'Nombre de couvert par défaut'
+            ->add('default_covers', IntegerType::class ,options:[
+                'label' => 'Nombre de couvert par défaut',
+                'constraints' => [
+                    new Range([
+                        'min' => 1,
+                        'max' => 20,
+                        'notInRangeMessage' => 'Le nombre de convive doit être compris entre 1 et 20.'
+                    ]),
+                    new GreaterThanOrEqual([
+                        'value' => 1,
+                        'message' => 'Au moins un couvert par réservation.'
+                    ]),
+                    new LessThanOrEqual([
+                        'value' => 20,
+                        'message' => 'Pour plus de convives, veuillez nous contacter pour téléphone pour réserver.'
+                    ]),
+                ]
             ])
             ->add('customer_allergens', EntityType::class, [
                 'class' => Allergen::class,
@@ -94,7 +114,7 @@ class RegistrationFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Customer::class,
         ]);
     }
 }

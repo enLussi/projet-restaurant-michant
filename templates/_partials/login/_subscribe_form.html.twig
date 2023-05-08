@@ -1,5 +1,4 @@
-
-
+<section class="qa-form">
 {{ form_start(registrationForm) }}
   <h2>Inscription</h2>
     {{ form_row(registrationForm.firstname, { 'row_attr': {'class': 'form-input'} }) }}
@@ -15,5 +14,6 @@
       {{ form_widget(registrationForm.RGPDConsent) }}
       {{ form_label(registrationForm.RGPDConsent, null ,{ 'label_attr': {'class': 'font-small'} }) }}
     </div>
-    <button type="submit" class="qa-button qa-button-std">S'inscrire</button>
+    <button type="submit" class="qa-button qa-button-std" form="registration_form">S'inscrire</button>
 {{ form_end(registrationForm) }}
+</section>

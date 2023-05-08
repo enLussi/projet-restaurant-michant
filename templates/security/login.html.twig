@@ -2,24 +2,11 @@
 
 {% block title %}Connexion{% endblock %}
 
-{% block stylesheets %}
-<link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
-{% endblock %}
-
-{% block javascripts %}
-<script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
-<script defer src="/assets/js/tomSelectRegister.js"></script>
-{% endblock %}
-
 {% block body %}
     {% include "_partials/navigation/_navbar_mini.html.twig" %}
     {% include "_partials/flash/_flash.html.twig" %}
 
-    <section class="qa-form login-form">
-        {% include "_partials/login/_login_form.html.twig" %}
-        <div class="login-form-separator"></div>
-        {% include "_partials/login/_subscribe_form.html.twig" %}
-    </section>
+    {% include "_partials/login/_login_form.html.twig" %}
 
     {% include "_partials/navigation/_footer.html.twig" %}
 {% endblock %}

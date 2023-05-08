@@ -1,4 +1,5 @@
-<form method="post">
+<section class="qa-form">
+<form name='connexion_form' method="post" id="connexion_form">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -34,12 +35,16 @@
         </div>
     #}
 
-    <button class="qa-button qa-button-std" type="submit">
+    <button class="qa-button qa-button-std" type="submit" form="connexion_form">
         Se connecter
     </button>
     <div class="options-link">
+      <a class="font-small" href="{{ path('app_subscribe') }}">
+          S'inscrire
+      </a>
       <a class="font-small" href="{{ path('forgotten_password') }}">
           Mot de passe oublié
       </a>
     </div>
 </form>
+</section>

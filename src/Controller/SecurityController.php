@@ -26,24 +26,42 @@ class SecurityController extends AbstractController
     #[Route(path: '/connexion', name: 'app_login')]
     public function login(
         AuthenticationUtils $authenticationUtils,
-        Request $request, 
-        UserPasswordHasherInterface $userPasswordHasher, 
-        UserAuthenticatorInterface $userAuthenticator, 
-        UserAuthenticator $authenticator, 
-        EntityManagerInterface $entityManager
+
     ): Response
     {
         if ($this->getUser()) {
             return $this->redirectToRoute('app_main');
         }
-
+        
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername, 
+            'error' => $error,
+        ]);
+    }
+
+    #[Route(path: '/inscription', name: 'app_subscribe')]
+    public function subscribe(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,        
+        UserAuthenticatorInterface $userAuthenticator, 
+        UserAuthenticator $authenticator, 
+        EntityManagerInterface $entityManager
+    ): Response
+    {
         $user = new Customer();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+
+        $form = $this->createForm(RegistrationFormType::class, $user, [
+            'csrf_field_name' => 'subscription',
+            'attr' => [ 
+                'id' => 'registration_form'
+            ]
+        ]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -66,19 +84,16 @@ class SecurityController extends AbstractController
             $this->addFlash('success', 'Votre inscription s\'est bien déroulée');
 
             // do anything else you need here, like send an email
-
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
                 $request
             );
         }
-
-        return $this->render('security/login.html.twig', [
-            'last_username' => $lastUsername, 
-            'error' => $error,
+        return $this->render('security/subscribe.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+
     }
 
     #[Route(path: '/deconnexion', name: 'app_logout')]
