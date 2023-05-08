@@ -30,7 +30,7 @@ calendar.onchange = () => {
         // On boucle sur tous les choix de créneaux possible pour
         // créer les champs radios
         periods[1].forEach((book_slot, index) => {
-
+          
           const radio_container = document.createElement('div');
           radio_container.classList.add('radio-container');
 
@@ -45,6 +45,12 @@ calendar.onchange = () => {
           const label_book = document.createElement('label');
           label_book.textContent = book_slot.book;
           label_book.htmlFor = radio_book.id;
+
+          if(book_slot.took) {
+            console.log(book_slot);
+            radio_book.disabled = true;
+            label_book.classList.add('disabled');
+          }
 
 
           // On ajoute le couple label radio au fieldset

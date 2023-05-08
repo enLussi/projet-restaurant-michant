@@ -1,0 +1,17 @@
+.all-customer-books {
+  min-width: 400px;
+  width: 80%;
+  max-width: 1200px;
+
+  display: flex;
+
+  flex-direction: column;
+  row-gap: 50px;
+
+  margin: $nav-content-margin auto $footer-content-margin auto;
+
+  h2 {
+    text-align: center;
+  }
+
+}

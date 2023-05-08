@@ -84,12 +84,22 @@
 			color: $light-color;
 		
 			background-color: $main-color;
+
+			cursor: pointer;
 		}
+
+		& + .disabled {
+			background-color: $disabled-color;
+			cursor: default;
+		}
+
 
 		&:checked + label {
 			background-color: $secondary-color-dark;
 		}
 	}
+
+
 }
 
 .form-couple {

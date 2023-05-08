@@ -1,11 +1,11 @@
 <section class="qa-form admin-forms hours-form">
     {{ form_start(hoursForm) }}
     <h1>{{ label | default('Ajouter') }} les Horaires</h1>
-    {% for groups in hoursForm|batch(6)%}
+    {% for groups in hoursForm|batch(8)%}
         {% if loop.index0 < 7 %}
         <fieldset>
             <legend class="font-large">{{ labels[loop.index - 1] }}</legend>
-            {% for inputs in groups|batch(3) %}
+            {% for inputs in groups|batch(4) %}
                 <div class="period">
                     <p>{% if loop.index == 1 %} Midi {% else %} Dinner {% endif %}</p>
                 {% for input in inputs %}

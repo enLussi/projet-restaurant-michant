@@ -1,0 +1,19 @@
+<section class="all-customer-books">
+  <h2>Réservations</h2>
+  {% if books is empty %}
+  <p>Vous n'avez effectué aucune réservation</p>
+  {% endif %}
+  {% for book in books %}
+  <div class="header-booking">
+    <div class="customer-coords">
+      <p>{{ book.customerFirstname }}  {{ book.customerLastname }}</p>
+    </div>
+    <div class="customer-booking">
+      <p class="font-large">Réservation pour {{ book.covers }} personne{% if book.covers > 1 %}s{% endif %}</p>
+    </div>
+    <div class="customer-date">
+      <p>Le {{book.bookingDate|date('d/m/Y')}} à {{ book.bookingDate|date('H:i') }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</section>

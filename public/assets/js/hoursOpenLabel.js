@@ -20,9 +20,11 @@ function setLabelBg() {
     if(element.checked) {
       element.parentElement.children[0].classList.add('checked');
       element.parentElement.children[0].classList.add('qa-button');
+      element.parentElement.children[0].classList.add('qa-button-small');
     } else {
       element.parentElement.children[0].classList.add('notchecked');
       element.parentElement.children[0].classList.add('qa-button');
+      element.parentElement.children[0].classList.add('qa-button-small');
     }
   });
 }

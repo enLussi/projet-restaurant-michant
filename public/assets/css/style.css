@@ -254,6 +254,11 @@ body {
   padding: 15px;
   color: #FEEFEF;
   background-color: #9E2A2B;
+  cursor: pointer;
+}
+.radio-container input[type=radio].qa-choice + .disabled {
+  background-color: #BCBCBC;
+  cursor: default;
 }
 .radio-container input[type=radio].qa-choice:checked + label {
   background-color: #E09F3E;
@@ -733,21 +738,28 @@ footer .footer-legals p {
   border: 2px solid #9E2A2B;
   border-radius: 5px;
 }
-.table-admin #books-results .header-booking {
+.table-admin #books-results .booking-allergens, .table-admin #books-results .booking-message {
+  padding: 10px 0;
+}
+.table-admin #books-results .booking-allergens p, .table-admin #books-results .booking-message p {
+  font-size: 15px;
+}
+
+.header-booking {
   height: 120px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
-.table-admin #books-results .header-booking .customer-coords {
+.header-booking .customer-coords {
   grid-column: 1;
   grid-row: 1/4;
   width: 100%;
 }
-.table-admin #books-results .header-booking .customer-coords p {
+.header-booking .customer-coords p {
   font-size: 15px;
 }
-.table-admin #books-results .header-booking .customer-booking {
+.header-booking .customer-booking {
   grid-column: 2/4;
   grid-row: 1/4;
   display: flex;
@@ -755,19 +767,13 @@ footer .footer-legals p {
   align-items: center;
   width: 100%;
 }
-.table-admin #books-results .header-booking .customer-date {
+.header-booking .customer-date {
   grid-column: 4;
   grid-row: 1;
   width: 100%;
   text-align: end;
 }
-.table-admin #books-results .header-booking .customer-date p {
-  font-size: 15px;
-}
-.table-admin #books-results .booking-allergens, .table-admin #books-results .booking-message {
-  padding: 10px 0;
-}
-.table-admin #books-results .booking-allergens p, .table-admin #books-results .booking-message p {
+.header-booking .customer-date p {
   font-size: 15px;
 }
 
@@ -809,6 +815,9 @@ footer .footer-legals p {
   column-gap: 20px;
   position: relative;
 }
+.hours-form fieldset .period .max-bookings {
+  max-width: 50px;
+}
 .hours-form fieldset .period .form-input {
   min-width: 100px;
   width: fit-content;
@@ -822,4 +831,17 @@ footer .footer-legals p {
 }
 .hours-form fieldset .period .checked {
   background-color: rgb(71, 216, 71);
+}
+
+.all-customer-books {
+  min-width: 400px;
+  width: 80%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+  margin: 150px auto 100px auto;
+}
+.all-customer-books h2 {
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */

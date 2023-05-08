@@ -9,6 +9,7 @@ use App\Repository\CourseCategoryRepository;
 use App\Repository\CourseRepository;
 use App\Repository\HoursRepository;
 use App\Repository\SetMenuRepository;
+use DateTime;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,6 +17,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Date;
 
 class ApiFetchController extends AbstractController
 {
@@ -72,12 +74,14 @@ class ApiFetchController extends AbstractController
         // semaine pour récupérer ensuite les horaires
         // correspondante au jour sélectionner
         $day = strtolower(date('l', $timestamp));
+        $month = date('m', $timestamp);
+        $year = date('Y', $timestamp);
         $day_hours = $hoursRepository->findBy(['label' => $day]);
 
         // On récupère les réservations du jour
         $all_booking = $bookingRepository->findByDateInterval(
-            new DateTimeImmutable(strtotime($timestamp)), 
-            new DateTimeImmutable(strtotime(strval(intval($timestamp) +24*60*60)))
+            (new DateTimeImmutable())->setTimestamp(intval($timestamp)), 
+            (new DateTimeImmutable())->setTimestamp(intval($timestamp)+ 24*60*60)
         );
 
         // Et on récupère leurs horaires en timestamp dans un nouveau tableau
@@ -93,20 +97,24 @@ class ApiFetchController extends AbstractController
         $hours_available = [];
 
         foreach($day_hours as $d) {
-            $opening = strtotime($d->getOpening());
-            $closure = strtotime($d->getClosure());
+            $opening = (new DateTime())
+                ->createFromFormat('l-m-Y/H:i', ucfirst($day).'-'.$month.'-'.$year.'/'.$d->getOpening())
+                ->getTimestamp();
+            $closure = (new DateTime())
+                ->createFromFormat('l-m-Y/H:i', ucfirst($day).'-'.$month.'-'.$year.'/'.$d->getClosure())
+                ->getTimestamp();
 
             $half_day_hours_available = [];
 
             if ($d->isOpen()) {
                 for($i = $opening; $i <= $closure; $i += 60*15) {
-                    $took = array_search($i, $all_booking_date);
+                    $took = array_search($i, $all_booking_date) !== false ? true : false;
                     array_push($half_day_hours_available, [
                         'book' => date( 'H:i', $i),
                         'took' => $took,
                     ]);
                 }
-
+                
                 $period = $d->isLunch() ? 'lunch' : 'dinner';
                 $hours_available = [...$hours_available,
                     $period => $half_day_hours_available

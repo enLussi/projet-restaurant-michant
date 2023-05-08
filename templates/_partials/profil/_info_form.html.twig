@@ -1,0 +1,15 @@
+<section class="qa-form">
+    {{ form_start (userForm) }}
+    <h2>Informations Client</h2>
+        {{ form_row (userForm.firstname, { 'row_attr': {'class': 'form-input'} }) }}
+        {{ form_row (userForm.lastname, { 'row_attr': {'class': 'form-input'} }) }}
+        {{ form_row (userForm.email, { 'row_attr': {'class': 'form-input'} }) }}
+        {{ form_row (userForm.phone, { 'row_attr': {'class': 'form-input'} }) }}
+        {{ form_row (userForm.default_covers, { 'row_attr': {'class': 'form-input'} }) }}
+        {{ form_row (userForm.customer_allergens, { 'row_attr': {'class': 'form-input'} }) }}
+        <div>
+          <a class="font-small" href="{{ path('forgotten_password') }}">Modifier mon mot de passe</a>
+        </div>
+        <button class="qa-button qa-button-std" type="submit">Modifier mes informations</button>
+    {{ form_end (userForm) }}
+</section>

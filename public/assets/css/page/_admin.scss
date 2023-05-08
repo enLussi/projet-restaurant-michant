@@ -38,45 +38,6 @@
 
     }
 
-    .header-booking {
-      height: 120px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-
-      .customer-coords{
-        grid-column: 1;
-        grid-row: 1 / 4;
-
-        width: 100%;
-
-        p {
-          font-size: $small-paragraph;
-        }
-      }
-
-      .customer-booking {
-        grid-column: 2 / 4;
-        grid-row: 1 / 4;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-      }
-
-      .customer-date {
-        grid-column: 4;
-        grid-row: 1;
-        width: 100%;
-        text-align: end;
-
-        p {
-          font-size: $small-paragraph;
-        }
-      }
-    }
-
     .booking-allergens, .booking-message {
 
       padding: 10px 0;
@@ -88,6 +49,45 @@
 
   }
 
+}
+
+.header-booking {
+  height: 120px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+
+  .customer-coords{
+    grid-column: 1;
+    grid-row: 1 / 4;
+
+    width: 100%;
+
+    p {
+      font-size: $small-paragraph;
+    }
+  }
+
+  .customer-booking {
+    grid-column: 2 / 4;
+    grid-row: 1 / 4;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .customer-date {
+    grid-column: 4;
+    grid-row: 1;
+    width: 100%;
+    text-align: end;
+
+    p {
+      font-size: $small-paragraph;
+    }
+  }
 }
 
 .admin-forms {
@@ -131,6 +131,8 @@
       margin-left: 1em;
     }
 
+
+
     .period {
       display: flex;
       flex-direction: row;
@@ -139,6 +141,10 @@
       column-gap: 20px;
 
       position: relative;
+
+      .max-bookings {
+        max-width: 50px;
+      }
 
       .form-input {
 

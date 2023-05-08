@@ -6,6 +6,7 @@
         <th>Jours</th>
         <th>Midi</th>
         <th>Soir</th>
+        <th>Nb Places max</th>
       </tr>
     </thead> 
     <tbody>
@@ -24,6 +25,7 @@
             {% else %} fermé
             {% endif %} 
           </td>
+          <td>{{ day[lunch].maxBooking }}</td>
         </tr>
       {% endfor %}
     </tbody>

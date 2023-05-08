@@ -2,28 +2,20 @@
 
 {% block title %}Profil Utilisateur{% endblock %}
 
+{% block stylesheets %}
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+<script defer src="/assets/js/tomSelectAllergens.js"></script>
+{% endblock %}
+
 {% block body %}
-    <section>
-        {{ form_start (userForm) }}
-            {{ form_row (userForm.firstname) }}
-            {{ form_row (userForm.lastname) }}
-            {{ form_row (userForm.email) }}
-            {{ form_row (userForm.phone) }}
-            {{ form_row (userForm.default_covers) }}
-            {{ form_row (userForm.customer_allergens) }}
-            <button type="submit">Modifier mes informations</button>
-        {{ form_end (userForm) }}
-        <div>
-            <a href="{{ path('forgotten_password') }}">Modifier mon mot de passe</a>
-        </div>
-    </section>
-    <section>
-    <p>Réservations</p>
-    {% for book in books %}
-    <div>
-        <p>Réservation pour {{ book.covers }} personne{% if book.covers > 1 %}s{% endif %}</p>
-        <p>Le {{book.bookingDate|date('d/m/Y')}} à {{ book.bookingDate|date('H:i') }}</p>
-    </div>
-    {% endfor %}
-    </section>
+    {% include "_partials/navigation/_navbar_mini.html.twig"%}
+
+    {% include "_partials/profil/_info_form.html.twig" %}
+    {% include "_partials/profil/_books.html.twig" %}
+
+    {% include "_partials/navigation/_footer.html.twig"%}
 {% endblock %}

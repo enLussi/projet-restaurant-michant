@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\HoursRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: HoursRepository::class)]
@@ -30,6 +31,9 @@ class Hours
 
     #[ORM\Column(length: 20)]
     private ?string $label = null;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $max_booking = null;
 
     public function getId(): ?int
     {
@@ -104,6 +108,18 @@ class Hours
     public function setLabel(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function getMaxBooking(): ?int
+    {
+        return $this->max_booking;
+    }
+
+    public function setMaxBooking(int $max_booking): self
+    {
+        $this->max_booking = $max_booking;
 
         return $this;
     }
