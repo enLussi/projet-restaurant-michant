@@ -16,8 +16,8 @@ Ce projet a été réalisé sous Symfony 6.2.*
     <li>
       <a href="#déploiement-du-projet-sur-serveur-distant">Déploiement du projet sur serveur distant</a>
       <ul>
-        <li><a href="#cloner-le-projet">Cloner le projet</a></li>
-        <li><a href="#base-de-données">Base de données</a></li>
+        <li><a href="#cloner-le-projet-sur-serveur">Cloner le projet sur serveur</a></li>
+        <li><a href="#base-de-données-sur-serveur">Base de données sur serveur</a></li>
         <li><a href="#environnement-et-mises-à-jour">Environnement et mises à jour</a></li>
       </ul>
     </li>
@@ -78,7 +78,7 @@ Cette commande lancera à nouveaux la création de ligne grâce à la fixtures A
 
 ## Déploiement du projet sur serveur distant ##
 
-### Cloner le projet ###
+### Cloner le projet sur serveur ###
 
 *Cloner le projet dans le répertoire apps de votre dossier XAMPP (par exemple)
 ```sh
@@ -101,7 +101,7 @@ composer install
 ```
 pour installer les dépendances nécessaire à Symfony
 
-### Base de données ###
+### Base de données sur serveur ###
 
 Les commandes consoles utilisées sont valable pour un environnement Linux.
 
