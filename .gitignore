@@ -9,6 +9,8 @@
 /vendor/
 /public/assets/imgs
 /public/assets/css/*.scss
+/public/assets/css/*.map.css
+/public/assets/css/*/*.scss
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
