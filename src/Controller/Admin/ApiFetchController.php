@@ -90,13 +90,16 @@ class ApiFetchController extends AbstractController
             array_push($all_booking_date, $booking->getBookingDate()->getTimestamp());
         }
 
-        // On crée un tableau avec toute les horaires par tranche de 15min
-        // Et on y insère les les valeur sous format hh:mm (book) et si le créneau et
+        // On crée un tableau avec toutes les horaires par tranche de 15min
+        // Et on y insère les les valeurs sous format hh:mm (book) et si le créneau et
         // déjà réserver ($took)
-        // On met en index de ce tableau si c'est le midi ou le dinner ($preiod)
+        // On met en index de ce tableau si c'est le midi ou le dinner ($period)
         $hours_available = [];
 
         foreach($day_hours as $d) {
+
+            // On prends le timestamp crée à partir d'un format de date à partir des données 
+            // récupérées
             $opening = (new DateTime())
                 ->createFromFormat('l-m-Y/H:i', ucfirst($day).'-'.$month.'-'.$year.'/'.$d->getOpening())
                 ->getTimestamp();
@@ -106,9 +109,24 @@ class ApiFetchController extends AbstractController
 
             $half_day_hours_available = [];
 
+            // Si le restaurant est ouvert on continue 
             if ($d->isOpen()) {
-                for($i = $opening; $i <= $closure; $i += 60*15) {
+
+                //On vérifie si le nombre max de réservation n'est pas déjà attends
+                $max = 0;
+                $isMax = false;
+                for($slot = $opening; $slot <= $closure - 60*60; $slot += 60*15) {
+                    if(array_search($slot, $all_booking_date)){
+                        $max += 1;
+                    }
+                    if($max >= $d->getMaxBooking()) {
+                        $isMax = true;
+                    }
+                }
+
+                for($i = $opening; $i <= $closure - 60*60; $i += 60*15) {
                     $took = array_search($i, $all_booking_date) !== false ? true : false;
+                    if($isMax) $took = true;
                     array_push($half_day_hours_available, [
                         'book' => date( 'H:i', $i),
                         'took' => $took,

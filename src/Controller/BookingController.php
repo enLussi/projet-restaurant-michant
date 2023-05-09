@@ -96,8 +96,7 @@ class BookingController extends AbstractController
 
             // On applique le nouveau DateTimeImmutable avec le nouveau timestamp
             $data->setBookingDate((new DateTimeImmutable())->setTimestamp($book_slot_time));
-            if($user) {
-                
+            if($user) {    
                 $data->setCustomer($user);
             }
 
