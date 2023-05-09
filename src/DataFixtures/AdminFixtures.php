@@ -14,15 +14,16 @@ class AdminFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+
+        $params = json_decode(file_get_contents('newAdmin.json'), true);
         
         $admin = new Admin();
     
-        $admin->setEmail('reception-quaiantique@mail.com');
-        $admin->setFirstname('Jean');
-        $admin->setLastname('Martin');
-
+        $admin->setEmail($params['email']);
+        $admin->setLastname($params['lastname']);
+        $admin->setFirstname($params['firstname']);
         $admin->setPassword(
-            $this->passwordEncoder->hashPassword($admin, 'admin@reception')
+            $this->passwordEncoder->hashPassword($admin, $params['password'])
         );
         $admin->setRoles(['ROLE_ADMIN']);
 
