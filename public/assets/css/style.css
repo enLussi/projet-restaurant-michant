@@ -852,4 +852,18 @@ footer .footer-legals p {
   padding: 10px;
   background-color: white;
   margin: auto;
+}
+
+.reset-password {
+  min-width: 400px;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+  margin: 150px auto 100px auto;
+}
+.reset-password h1 {
+  margin-bottom: 20px;
 }/*# sourceMappingURL=style.css.map */
