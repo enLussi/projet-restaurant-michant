@@ -4,9 +4,8 @@
     <thead>
       <tr>
         <th>Jours</th>
-        <th>Midi</th>
-        <th>Soir</th>
-        <th>Nb Places max</th>
+        <th colspan="2">Midi</th>
+        <th colspan="2">Soir</th>
       </tr>
     </thead> 
     <tbody>
@@ -20,12 +19,13 @@
             {% else %} fermé
             {% endif %}
           </td>
+          <td>{{ day[lunch].maxBooking }} réservations max</td>
           <td>
             {% if (day[dinner].isOpen) %}{{ day[dinner].opening }} - {{day[dinner].closure}}
             {% else %} fermé
             {% endif %} 
           </td>
-          <td>{{ day[lunch].maxBooking }}</td>
+          <td>{{ day[dinner].maxBooking }} réservations max</td>
         </tr>
       {% endfor %}
     </tbody>

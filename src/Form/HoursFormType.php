@@ -38,7 +38,7 @@ class HoursFormType extends AbstractType
                     'label' => 'Ouvert ?',
                     'required' => false,
                 ])
-                ->add($day.'_max_bookings', IntegerType::class, [
+                ->add($day.'_maxBookings', IntegerType::class, [
                     'label' => 'Réservations Max',
                     'attr' => [
                         'class' => 'max-bookings'

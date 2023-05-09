@@ -54,7 +54,7 @@ class HoursController extends AbstractController
             $index_opening = $h->getLabel() . '_' . ($h->isLunch() ? 'lunch' : 'dinner') . '_opening';
             $index_closure = $h->getLabel() . '_' . ($h->isLunch() ? 'lunch' : 'dinner') . '_closure';
             $index_open = $h->getLabel() . '_' . ($h->isLunch() ? 'lunch' : 'dinner') . '_open';
-            $index_max = $h->getLabel() . '_' . ($h->isLunch() ? 'lunch' : 'dinner') . '_max_bookings';
+            $index_max = $h->getLabel() . '_' . ($h->isLunch() ? 'lunch' : 'dinner') . '_maxBookings';
 
             // Et on les insère dans le tableau data les valeurs
             // selon les index prédéfini 
@@ -123,7 +123,7 @@ class HoursController extends AbstractController
                                 ); 
                                 $entityManager->persist($hours_data[$index_data]);
                             }
-                        case "maxBooking":
+                        case "maxBookings":
                             $index_data = $this->searchInData($hours_data, $state);
                             if($index_data !== false) {
                                 $hours_data[$index_data]->setMaxBooking(

@@ -168,8 +168,9 @@ body {
   font-weight: 500;
   height: 25px;
   vertical-align: middle;
-  text-align: start;
+  text-align: center;
   padding: 5px 5px;
+  border-right: 1px solid #BCBCBC;
 }
 .table thead tr th.center {
   text-align: center;
@@ -186,11 +187,11 @@ body {
   text-align: center;
 }
 
-.table.striped tr:nth-child(odd) {
+.table.striped tbody tr:nth-child(odd) {
   background-color: white;
 }
 
-.table.hovered tr:hover {
+.table.hovered tbody tr:hover {
   background-color: #BCBCBC;
 }
 
