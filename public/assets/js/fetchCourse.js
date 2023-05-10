@@ -35,7 +35,6 @@ async function fetchCourses () {
       // Object.entries permet de boucler comme sur un tableau
       // mais pour des objets
       Object.entries(coursesCategories).forEach(category => {
-       
         // Une div pour accueillir chaque select
         // et création d'un select avec les attributs
         // multiple, required et un id unique
@@ -56,14 +55,13 @@ async function fetchCourses () {
 
         // On boucle sur l'élément d'indice 1 qui correspond à 
         // l'objet Plat.
-        Object.entries(category[1]).forEach(course => {
-          
+        Object.entries(category[1]).forEach(courses => {
           // On crée l'option du select pour chaque Plat
           // dans la Catégorie
           const option = document.createElement('option');
 
-          option.value = course.id;
-          option.textContent = course.title;
+          option.value = courses[1].id;
+          option.textContent = courses[1].title;
 
           // On ajoute les éléments dans les divs respectives
           coursesField.appendChild(option);
