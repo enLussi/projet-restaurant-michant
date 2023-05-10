@@ -43,14 +43,22 @@ class ApiFetchController extends AbstractController
             $courses = $courseRepository->findBy(['category' => $category->getId()]);
 
             $courses_toexport = [];
+            $course_toexport = [];
             foreach ($courses as $course) {
                 $course_toexport = [
                     'id' => $course->getId(),
                     'title' => $course->getTitle()
                 ];
 
-                $courses_toexport[$category->getLabel()] = $course_toexport;
+                if(!array_key_exists($category->getLabel(), $courses_toexport)){
+                    $courses_toexport[$category->getLabel()] = [$course_toexport];
+                } else {
+                    $courses_toexport[$category->getLabel()] = [
+                        ...$courses_toexport[$category->getLabel()],
+                        $course_toexport];
+                }
             }
+            
 
             array_push($all_courses, $courses_toexport);
         }

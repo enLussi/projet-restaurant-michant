@@ -29,7 +29,7 @@ async function fetchCourses () {
       // On vide la div qui va accueillir les
       // nouveaux select 
       courseSelect.innerHTML = "";
-      
+      console.log(coursesCategories);
       let count = 0;
       // On boucle sur les données envoyé par le serveur,
       // Object.entries permet de boucler comme sur un tableau
@@ -58,14 +58,20 @@ async function fetchCourses () {
         Object.entries(category[1]).forEach(courses => {
           // On crée l'option du select pour chaque Plat
           // dans la Catégorie
-          const option = document.createElement('option');
-
-          option.value = courses[1].id;
-          option.textContent = courses[1].title;
-
-          // On ajoute les éléments dans les divs respectives
-          coursesField.appendChild(option);
           
+          console.log(courses);
+          courses[1].forEach(course => {
+
+            
+            const option = document.createElement('option');
+
+            option.value = course.id;
+            option.textContent = course.title;
+  
+            // On ajoute les éléments dans les divs respectives
+            coursesField.appendChild(option);
+          })
+
         });
 
         count += 1;
