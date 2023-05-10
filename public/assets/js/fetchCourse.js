@@ -14,9 +14,15 @@ async function fetchCourses () {
   // sélectionné dans le formulaire
   const setmenuId = setmenuField.value;
 
+  const path = window.location.pathname;
+  let url = `/api/fetch/courses?setmenu=${setmenuId}`;
+  console.log(path);
+  if(path.split('/')[3] == 'edition') {
+    url += `&id=${path.split('/')[4]}`
+  }
 
   // On crée une url avec la valeur 
-  const url = `/api/fetch/courses?setmenu=${setmenuId}`;
+  
 
   // On fait un requête en Get pour obtenir les plats
   // correspondant à la Formule
@@ -59,7 +65,6 @@ async function fetchCourses () {
           // On crée l'option du select pour chaque Plat
           // dans la Catégorie
           
-          console.log(courses);
           courses[1].forEach(course => {
 
             
@@ -67,6 +72,9 @@ async function fetchCourses () {
 
             option.value = course.id;
             option.textContent = course.title;
+            option.selected = course.selected;
+
+            console.log(course.selected);
   
             // On ajoute les éléments dans les divs respectives
             coursesField.appendChild(option);

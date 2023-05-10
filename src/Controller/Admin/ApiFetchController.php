@@ -8,6 +8,7 @@ use App\Repository\BookingRepository;
 use App\Repository\CourseCategoryRepository;
 use App\Repository\CourseRepository;
 use App\Repository\HoursRepository;
+use App\Repository\MenuRepository;
 use App\Repository\SetMenuRepository;
 use DateTime;
 use DateTimeImmutable;
@@ -25,18 +26,29 @@ class ApiFetchController extends AbstractController
     public function fetchCourse(
         Request $request,
         CourseRepository $courseRepository,
-        CourseCategoryRepository $courseCategoryRepository
+        CourseCategoryRepository $courseCategoryRepository,
+        MenuRepository $menuRepository
     ): Response
     {
 
         // On récupère l'id envoyé à travers l'url
         $setmenuId = $request->query->get('setmenu');
+        $menuId = $request->query->get('id');
 
         // On récupère les Catégories de plats lié à la formule
         // via une méthode personnalisé (un exmple dans les classes
         // "Repository") qui renvoie un objet de type CourseCategory
         $courseCategories = $courseCategoryRepository->findBySetmenuId($setmenuId);
 
+        $menuids = [];
+        if($menuId !== null) {
+            $menu = $menuRepository->findOneBy(['id' => $menuId]);
+
+            foreach($menu->getCourses() as $courses) {
+                array_push($menuids, $courses->getId());
+            }
+        }
+        
         $all_courses = [];
 
         foreach ($courseCategories as $category) {
@@ -47,7 +59,8 @@ class ApiFetchController extends AbstractController
             foreach ($courses as $course) {
                 $course_toexport = [
                     'id' => $course->getId(),
-                    'title' => $course->getTitle()
+                    'title' => $course->getTitle(),
+                    'selected' => in_array($course->getId(), $menuids)
                 ];
 
                 if(!array_key_exists($category->getLabel(), $courses_toexport)){
