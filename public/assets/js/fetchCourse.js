@@ -16,7 +16,6 @@ async function fetchCourses () {
 
   const path = window.location.pathname;
   let url = `/api/fetch/courses?setmenu=${setmenuId}`;
-  console.log(path);
   if(path.split('/')[3] == 'edition') {
     url += `&id=${path.split('/')[4]}`
   }
@@ -35,7 +34,6 @@ async function fetchCourses () {
       // On vide la div qui va accueillir les
       // nouveaux select 
       courseSelect.innerHTML = "";
-      console.log(coursesCategories);
       let count = 0;
       // On boucle sur les données envoyé par le serveur,
       // Object.entries permet de boucler comme sur un tableau
@@ -50,7 +48,7 @@ async function fetchCourses () {
         coursesField.setAttribute('multiple', true);
         coursesField.setAttribute('required', true);
         coursesField.id = 'menu_form_courses'+count;
-        coursesField.name = 'menu_form_courses'+count;
+        coursesField.name = 'menu_form_courses'+count+'[]';
 
         placeholder = document.createElement('option');
 
@@ -73,8 +71,6 @@ async function fetchCourses () {
             option.value = course.id;
             option.textContent = course.title;
             option.selected = course.selected;
-
-            console.log(course.selected);
   
             // On ajoute les éléments dans les divs respectives
             coursesField.appendChild(option);
@@ -91,8 +87,10 @@ async function fetchCourses () {
         new TomSelect("#"+coursesField.id,{
           maxItems: 10
         });
+
       });
 
-
+      console.log(document.getElementById('menu_form_courses1'))
     })  
 }
+

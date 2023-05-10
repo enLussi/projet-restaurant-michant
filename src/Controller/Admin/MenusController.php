@@ -54,7 +54,6 @@ class MenusController extends AbstractController
                 
                 $count ++;
             }
-
             $entityManager->persist($menu);
             try {
                 $entityManager->flush();
@@ -77,7 +76,8 @@ class MenusController extends AbstractController
     public function edit(
         Menu $menu,
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        CourseRepository $courseRepository
     ): Response
     {
 
@@ -86,12 +86,23 @@ class MenusController extends AbstractController
         $menu_form = $this->createForm(MenuFormType::class, $menu);
 
         $menu_form->handleRequest($request);
-
-  
+        $post = $_POST;
 
         if($menu_form->isSubmitted() && $menu_form->isValid()) {
-
+            $count = 0;
+            // On boucle sur tous les select des catégories de plat
+            while ($request->request->has('menu_form_courses'.$count)) {
             
+                $courseIds = $post['menu_form_courses'.$count];
+
+                foreach ($courseIds as $courseId){
+                    $course = $courseRepository->find($courseId);
+                    $menu->addCourse($course);
+                    $course->addMenu($menu);
+                }
+                
+                $count ++;
+            }
 
             $entityManager->persist($menu);
             try {
