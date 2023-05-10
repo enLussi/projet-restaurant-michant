@@ -1,4 +1,4 @@
-<section class="qa-form admin-forms hours-form">
+<section class="qa-form admin-forms hours-form font-small">
     {{ form_start(hoursForm) }}
     <h1>{{ label | default('Ajouter') }} les Horaires</h1>
     {% for groups in hoursForm|batch(8)%}
