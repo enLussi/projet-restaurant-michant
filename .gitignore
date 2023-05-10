@@ -7,7 +7,7 @@
 /public/bundles/
 /var/
 /vendor/
-/public/assets/imgs
+/public/assets/imgs/gallery
 /public/assets/css/*.scss
 /public/assets/css/*.css.map
 /public/assets/css/*/*.scss
