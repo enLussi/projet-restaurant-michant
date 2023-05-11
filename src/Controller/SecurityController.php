@@ -155,13 +155,16 @@ class SecurityController extends AbstractController
                     'user' => $user
                 ];
 
+                // On envoie le mail
                 $mail->send(
-                    'tamagotabemasu@gmail.com',
+                    'admin-reception@quai-antique-chef-michant.fr',
                     $user->getEmail(),
                     'Réinitialisation de mot de passe',
                     'password_reset',
                     $context
                 );
+
+                dd($mail);
 
                 $this->addFlash('success', 'Email envoyé avec succès');
 
